@@ -1,14 +1,18 @@
 import React from 'react';
-import { Layout} from 'antd'
-import styles from './App.css';
 
 import {
   Route,
   Redirect
 } from 'react-router-dom';
 
+import styles from './App.scss';
+
+import Nav from 'components/Nav'
+
 const App = (props) => (
-  <div>Hello</div>
+  <div>
+    <Nav/>
+  </div>
 )
 
 export default App;

@@ -32,13 +32,14 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.pcss$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
-            'postcss-loader'
+            'postcss-loader',
+            'sass-loader'
           ]
         })
       },
@@ -68,7 +69,8 @@ module.exports = {
       'components': resolve(__dirname, '../src/components'),
       'containers': resolve(__dirname, '../src/containers'),
       'actions': resolve(__dirname, '../src/actions'),
-      'reducers': resolve(__dirname, '../src/reducers/')
+      'reducers': resolve(__dirname, '../src/reducers/'),
+      'styles': resolve(__dirname, '../src/styles')
     }
   },
   plugins: [
