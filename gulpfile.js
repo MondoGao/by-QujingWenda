@@ -19,3 +19,5 @@ Gulp.task('build', ['clean'], function () {
 Gulp.task('serve', function () {
   utils.serve(Webpack, WebpackDevServer, webpackConfig);
 });
+
+Gulp.task('default', ['serve']);
