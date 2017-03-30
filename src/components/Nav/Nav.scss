@@ -1,0 +1,50 @@
+@import "../../styles/utils";
+
+@mixin tab_icon($name) {
+  &.#{$name} {
+    &:before {
+      background-image: url("assets/tab_#{$name}_n.png");
+    }
+    &.active:before {
+      background-image: url("assets/tab_#{$name}_h.png");
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+a.nav-item {
+  display: inline-block;
+  width: 33.33%;
+  height: px2em(98px);
+  line-height: px2em(98px);
+  @include font-dpr(30px);
+  color: #ffffff;
+  letter-spacing: -0.07px;
+  text-align: center;
+  background-color: #4f505e;
+  opacity: 9;
+  transition: all .3s;
+  &:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: px2em(3px);
+    right: px2em(6px);
+    width: px2em(30px);
+    height: px2em(30px);
+    background: no-repeat center / contain;
+    transition: background .3s;
+  }
+  &.active {
+    background-color: #727487;
+  }
+
+  @include tab_icon('hot');
+  @include tab_icon('user');
+  @include tab_icon('me');
+}

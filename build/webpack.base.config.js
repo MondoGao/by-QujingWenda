@@ -34,14 +34,17 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
+        use:
+          // ExtractTextPlugin.extract({
+          // fallback: 'style-loader',
+          // use:
+            [
+              'style-loader',
             'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
             'postcss-loader',
             'sass-loader'
           ]
-        })
+        // })
       },
       {
         test: /\.css$/,
