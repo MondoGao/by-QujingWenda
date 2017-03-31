@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Route,
   Redirect
@@ -8,10 +7,11 @@ import {
 import styles from './App.scss';
 
 import Nav from 'components/Nav'
+import Question from 'components/QuestionItem'
 
 const App = (props) => (
   <div>
-    <Route path="/" exact render={() => <div>热门</div>}/>
+    <Route path="/" exact render={() => <Question/>}/>
     <Route path="/users" render={() => <div>答主</div>}/>
     <Route path="/me" render={() => <div>我的</div>}/>
     <Nav/>
