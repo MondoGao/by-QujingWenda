@@ -3,8 +3,8 @@ import styles from './QuestionList.scss'
 
 import QuestionItem from 'components/QuestionItem'
 
-const QuestionList = ({ data }) => (
-  <section className={styles['list']}>
+const QuestionList = ({ data, onListScroll }) => (
+  <section className={styles['list']} onScroll={onListScroll}>
     {data.map((item, index) => <QuestionItem key={index} data={item}/>)}
   </section>
 )

@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import QuestionList from 'components/QuestionList'
-import { addQuestions } from 'actions'
+import { addQuestions, toggleRequest } from 'actions'
+import * as consts from 'actions/consts'
 import { getQuestions }  from 'sources'
 
 class QuestionListContainer extends React.Component {
@@ -14,25 +15,33 @@ class QuestionListContainer extends React.Component {
     this.props.getData()
   }
 
+  handleScroll = (e) => {
+    if (!this.props.isLoading && e.target.scrollHeight - window.innerHeight - e.target.scrollTop < 100) {
+      this.props.getData()
+    }
+  }
+
   render() {
     return (
-      <QuestionList data={this.props.data}/>
+      <QuestionList ref={(list) => this.list = list} onListScroll={this.handleScroll} data={this.props.data}/>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    data: state.questionById
+    data: state.questions,
+    isLoading: state.hotPage.isLoading
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getData() {
+      dispatch(toggleRequest(consts.PAGES.HOT, true))
       getQuestions().then((data) => {
         dispatch(addQuestions(data))
-        setTimeout(() => dispatch(addQuestions(data)), 2000)
+        dispatch(toggleRequest(consts.PAGES.HOT, false))
       })
     }
   }
