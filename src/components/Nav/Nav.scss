@@ -1,4 +1,4 @@
-@import "../../styles/utils";
+@import "../../styles/_utils";
 
 @mixin tab_icon($name) {
   &.#{$name} {

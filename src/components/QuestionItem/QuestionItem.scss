@@ -1,7 +1,8 @@
-@import "../../styles/utils";
+@import "../../styles/_utils";
 
 .card {
   position: relative;
+  margin-bottom: px2em(15px);
   width: 100%;
   padding: px2em(27px) px2em(30px) px2em(40px);
   background-color: #fff;
