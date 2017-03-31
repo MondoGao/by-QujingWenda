@@ -15,13 +15,13 @@ const QuestionItem = ({data = defaultData}) => {
     <article className={styles.card}>
       <h5>华中科技大学</h5>
       <p className={styles.content}>{data.content}</p>
-      <section>
+      <section className={styles['answer-container']}>
         <figure className={styles['avatar-wrapper']}>
           <img src={data.user.avatar} alt={data.user.name}/>
         </figure>
-        <article className={styles['anwser-voice-wrapper']}>
-          <div className={styles['anwser-voice']}>
-            <div className={styles['anwser-playing-progress']}></div>
+        <article className={styles['answer-voice-wrapper']}>
+          <div className={styles['answer-voice']}>
+            <div className={styles['answer-playing-progress']}></div>
             <figure>
               <icon></icon>
               <figcaption>10'</figcaption>
@@ -29,12 +29,12 @@ const QuestionItem = ({data = defaultData}) => {
             <h6>¥1 学习一个</h6>
           </div>
         </article>
-        <div>
+        <div className={styles['answer-meta']}>
           <p>价值5元</p>
           <p>22人听过</p>
         </div>
       </section>
-      <section>
+      <section className={styles['user-meta']}>
         <h4>{data.user.name}</h4>
         <p>{data.user.bio}</p>
       </section>

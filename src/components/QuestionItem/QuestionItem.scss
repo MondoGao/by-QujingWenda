@@ -1,9 +1,29 @@
 @import "../../styles/utils";
 
 .card {
+  position: relative;
   width: 100%;
   padding: px2em(27px) px2em(30px) px2em(40px);
   background-color: #fff;
+  > h5 {
+    position: absolute;
+    right: px2em(28px);
+    bottom: px2em(40px);
+    @include font-dpr(24px);
+    font-weight: normal;
+    color: #484756;
+    letter-spacing: px2em(-0.04px);
+    &:before {
+      content: "";
+      display: inline-block;
+      position: relative;
+      top: px2em(2px);
+      margin-right: px2em(2px);
+      width: px2em(30px);
+      height: px2em(20px);
+      background: url("assets/answer_school.png") no-repeat center / contain;
+    }
+  }
 }
 
 .content {
@@ -11,6 +31,11 @@
   color:#484756;
   letter-spacing: px2em(1.17px);
   line-height: px2em(48px);
+}
+
+.answer-container {
+  margin-top: px2em(18px);
+  padding: 0 px2em(4px);
 }
 
 .avatar-wrapper {
@@ -27,10 +52,10 @@
   }
 }
 
-.anwser-voice-wrapper {
+.answer-voice-wrapper {
   display: inline-block;
   position: relative;
-  margin-left: px2em(24px);
+  margin-left: px2em(33px);
   vertical-align: middle;
   &:before {
     content: "";
@@ -46,7 +71,7 @@
   }
 }
 
-.anwser-voice {
+.answer-voice {
   position: relative;
   width: px2em(303px);
   height: px2em(77px);
@@ -76,17 +101,46 @@
       display: inline-block;
       position: relative;
       top: px2em(2px);
+      margin-right: px2em(2px);
       width: px2em(14px);
       height: px2em(20px);
       background: url("assets/answer_voice.png") no-repeat center / contain;
     }
   }
 }
-.anwser-playing-progress {
-  @extend .anwser-voice;
+.answer-playing-progress {
+  @extend .answer-voice;
   content: "";
   position: absolute;
   right: 100%;
   background-color: #e8939a;
   z-index: 0;
+}
+
+.answer-meta {
+  position: relative;
+  display: inline-block;
+  float: right;
+  top: px2em(5px);
+  @include font-dpr(24px);
+  color: #84848c;
+  letter-spacing: px2em(1.44px);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.user-meta {
+  margin-top: px2em(16px);
+  h4 {
+    @include font-dpr(26px);
+    color: #484756;
+    letter-spacing: px2em(0.16px);
+    font-weight: normal;
+  }
+  p {
+    margin-top: px2em(5px);
+    @include font-dpr(24px);
+    color: #84848c;
+    letter-spacing: px2em(0.15px);
+  }
 }
