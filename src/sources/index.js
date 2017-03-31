@@ -1,5 +1,1 @@
-import * as question from 'sources/questions'
-
-export default {
-  ...question
-}
+export * from 'sources/questions'

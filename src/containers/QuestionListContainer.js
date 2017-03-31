@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import QuestionList from 'components/QuestionList'
-import { addQuestions } from 'actions/index'
-import sources  from 'sources'
+import { addQuestions } from 'actions'
+import { getQuestions }  from 'sources'
 
 class QuestionListContainer extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getData() {
-      sources.getQuestions().then((data) => {
+      getQuestions().then((data) => {
         dispatch(addQuestions(data))
         setTimeout(() => dispatch(addQuestions(data)), 2000)
       })

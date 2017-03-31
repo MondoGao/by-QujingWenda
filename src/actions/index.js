@@ -1,6 +1,8 @@
+import * as consts from 'actions/consts'
+
 export function addQuestions(data)  {
   return {
-    type: 'ADD_QUESTIONS',
+    type: consts.addQuestions,
     data
   }
 }

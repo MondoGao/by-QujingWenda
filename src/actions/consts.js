@@ -1,0 +1,1 @@
+export const addQuestions = 'ADD_QUESTIONS'

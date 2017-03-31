@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
+import * as consts from 'actions/consts'
 
 function questionById(state = [], action) {
-  if (action.type == 'ADD_QUESTIONS') {
+  if (action.type == consts.addQuestions) {
     return [...state,  ...action.data]
   }
   return state
