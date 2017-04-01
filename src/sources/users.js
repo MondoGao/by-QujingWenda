@@ -1,9 +1,13 @@
 import { normalize, schema } from 'normalizr'
 
+import avatar from 'assets/tab_hot_h.png'
+
 const question = new schema.Entity('questions')
+const school = new schema.Entity('schools')
 const user = new schema.Entity('users', {
   answerTo: [ question ],
-  listenTo: [ question ]
+  listenTo: [ question ],
+  school
 })
 
 export function getUsers() {
@@ -14,7 +18,11 @@ export function getUsers() {
       bio: '冰岩作坊主管，腾讯产品经理',
       role: 2,
       price: 1,
-      school: 0,
+      school: {
+        id: 1,
+        name: '华中科技大学',
+      },
+      avatar,
       answerTo: [{
         id: 1,
         desc: '听说灿神很帅，是不是真的？'

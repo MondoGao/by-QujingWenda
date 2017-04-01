@@ -39,5 +39,10 @@ if (module.hot) {
         <Route path="/" component={App}/>
       </Router>
     )
-  });
+  })
+
+  module.hot.accept('reducers', () => {
+    const nextReducer = require('reducers');
+    store.replaceReducer(nextReducer);
+  })
 }

@@ -9,15 +9,27 @@ function questions(state = [], action) {
 }
 
 function users(state = {}, action) {
-  if (action.type === consts.ADD_USERS) {
-    return {...state,  ...action.payload.entities.users}
+  switch (action.type){
+    case consts.ADD_USERS:
+      return {...state,  ...action.payload.entities.users}
+    default:
+      return state
   }
-  return state
+}
+
+function schools(state = {}, action) {
+  switch (action.type) {
+    case consts.ADD_USERS:
+      return {...state, ...action.payload.entities.schools}
+    default:
+      return state
+  }
 }
 
 const entities = combineReducers({
   questions,
-  users
+  users,
+  schools
 })
 
 export default entities

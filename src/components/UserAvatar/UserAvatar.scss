@@ -2,8 +2,6 @@
 
 .avatar-wrapper {
   display: inline-block;
-  width: px2em(75px);
-  height: px2em(75px);
   border-radius: 100%;
   overflow: hidden;
   vertical-align: middle;
@@ -12,4 +10,24 @@
     height: 100%;
     border-radius: 100%;
   }
+}
+
+.xs {
+  width: px2em(45px);
+  height: px2em(45px);
+}
+
+.sm {
+  width: px2em(75px);
+  height: px2em(75px);
+}
+
+.md {
+  width: px2em(91px);
+  height: px2em(91px);
+}
+
+.lg {
+  width: px2em(163px);
+  height: px2em(163px);
 }
