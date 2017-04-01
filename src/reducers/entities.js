@@ -8,8 +8,16 @@ function questions(state = [], action) {
   return state
 }
 
+function users(state = {}, action) {
+  if (action.type === consts.ADD_USERS) {
+    return {...state,  ...action.payload.entities.users}
+  }
+  return state
+}
+
 const entities = combineReducers({
-  questions
+  questions,
+  users
 })
 
 export default entities

@@ -7,6 +7,13 @@ export function addQuestions(data)  {
   }
 }
 
+export function addUsers(data) {
+  return {
+    type: consts.ADD_USERS,
+    payload: data
+  }
+}
+
 export function toggleRequest(page, isLoading) {
   return {
     type: consts.REQUEST_TOGGLE,
