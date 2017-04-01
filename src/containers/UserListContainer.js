@@ -21,7 +21,7 @@ function composeData(state) {
   const users = state.entities.users
   const schools = state.entities.schools
   return Object.keys(users).map((key) => (
-    {...users[key], school: schools[users[key].id]}
+    {...users[key], school: schools[users[key].school]}
   ))
 }
 
