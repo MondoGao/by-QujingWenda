@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import QuestionList from 'components/QuestionList'
-import { addQuestions, toggleRequest } from 'actions'
+import { addQuestions, addUsers, toggleRequest } from 'actions'
 import * as consts from 'actions/consts'
-import { getQuestions }  from 'sources'
+import { getUsers }  from 'sources'
 
 class QuestionListContainer extends React.Component {
   constructor(props) {
@@ -32,7 +32,11 @@ class QuestionListContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.entities.questions,
+    data: Object.keys(state.entities.questions).map((key) => ({
+      ...state.entities.questions[key],
+      answerUser: state.entities.users[state.entities.questions[key].answerUser],
+      askUser: state.entities.users[state.entities.questions[key].askUser]
+    })),
     isLoading: state.pages.hot.isLoading
   }
 }
@@ -41,8 +45,8 @@ function mapDispatchToProps(dispatch) {
   return {
     getData() {
       dispatch(toggleRequest(consts.PAGES.HOT, true))
-      getQuestions().then((data) => {
-        dispatch(addQuestions(data))
+      getUsers().then((data) => {
+        dispatch(addUsers(data))
         dispatch(toggleRequest(consts.PAGES.HOT, false))
       })
     }

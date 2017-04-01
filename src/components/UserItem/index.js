@@ -19,7 +19,6 @@ const UserItem = ({ data }) => (
       <p className={styles.bio}>{data.bio}</p>
     </div>
     <Button className={styles['ask-button']}>¥{data.price} 提问</Button>
-    {console.log(data)}
   </article>
 )
 
