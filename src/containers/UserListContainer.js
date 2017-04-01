@@ -17,16 +17,8 @@ class UserListContainer extends React.Component {
   }
 }
 
-function composeData(state) {
-  const users = state.entities.users
-  const schools = state.entities.schools
-  return Object.keys(users).map((key) => (
-    {...users[key], school: schools[users[key].school]}
-  ))
-}
-
 const mapStateToProps = (state) => ({
-  data: composeData(state)
+  data: state.entities.users
 })
 
 const mapDispatchToProps = (dispatch) => ({
