@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import QuestionList from 'components/QuestionList'
 import { addQuestions, toggleRequest } from 'actions'
 import * as consts from 'actions/consts'
-import { getQuestions }  from 'sources'
+import { getQuestions, getUsers }  from 'sources'
 
 class QuestionListContainer extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class QuestionListContainer extends React.Component {
     if (this.props.data.length < 1) {
       this.props.getData()
     }
+    getUsers()
   }
 
   handleScroll = (e) => {
