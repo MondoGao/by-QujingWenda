@@ -8,8 +8,8 @@ import UserMetaContainer from 'containers/UserMetaContainer'
 const MePage = ({ myself }) => (
   <div className={styles['me-container']}>
     <section className={styles.information}>
-      <UserMetaContainer id={myself.id}/>
-      <Button disable>成为答主</Button>
+      <UserMetaContainer myself id={myself.id}/>
+      <Button className={styles['btn-upgrade']} disable>成为答主</Button>
     </section>
   </div>
 )

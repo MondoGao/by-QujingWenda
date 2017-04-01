@@ -5,7 +5,7 @@ import styles from './UserList.scss'
 
 const UserList = ({ data }) => (
   <section>
-    {Object.keys(data).map((key) => <UserItem data={data[key]} key={data[key].id}/>)}
+    {Object.keys(data).map((key) => <UserItem user={data[key]} key={data[key].id}/>)}
   </section>
 )
 

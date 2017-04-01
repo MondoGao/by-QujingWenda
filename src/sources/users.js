@@ -42,7 +42,7 @@ export function getUsers() {
     {
       id: 2,
       name: '麦冬',
-      bio: '前端开发、表演朗诵达人',
+      bio: '前端开发、表演朗诵达人前端开发、表演朗诵达人前端开发、表演朗诵达人前端开发、表演朗诵达人',
       role: 2,
       price: 1,
       school: {

@@ -4,10 +4,10 @@ import styles from './UserItem.scss'
 import Button from 'components/Button'
 import UserMeta from 'components/UserMeta'
 
-const UserItem = ({ data }) => (
+const UserItem = ({ user }) => (
   <article className={styles.card}>
-    <UserMeta data={data}/>
-    <Button className={styles['ask-button']}>¥{data.price} 提问</Button>
+    <UserMeta user={user}/>
+    <Button className={styles['ask-button']}>¥{user.price} 提问</Button>
   </article>
 )
 

@@ -3,6 +3,7 @@
 .meta-wrapper {
   display: inline-block;
   margin-left: px2em(26px);
+  width: px2em(580px);
   vertical-align: top;
 }
 
@@ -15,7 +16,6 @@
 
 .bio {
   @include font-dpr(28px);
-  margin-top: px2em(17px);
   color: #84848c;
   letter-spacing: px2em(.86px);
   line-height: px2em(44px);
@@ -23,6 +23,7 @@
 
 .desc-group {
   margin-top: px2em(20px);
+  margin-bottom: px2em(17px);
 }
 
 .desc-item {
@@ -37,9 +38,11 @@
     padding-left: 0;
   }
   &:last-of-type {
-    width: auto;
     padding-right: 0;
     border-right: 0;
+  }
+  &.auto-width {
+    width: auto;
   }
   p {
     @include font-dpr(30px);
@@ -56,5 +59,33 @@
     p {
       @include font-dpr(26px);
     }
+  }
+}
+
+.myself {
+  padding: px2em(20px) 0 px2em(32px);
+  background-color: #fff;
+  .avatar {
+    display: block;
+    margin: 0 auto;
+  }
+  .name {
+    margin-top: px2em(10px);
+  }
+  .meta-wrapper {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .desc-group {
+    margin-top: px2em(27px);
+    margin-bottom: px2em(20px);
+  }
+  .desc-item p {
+    font-weight: bold;
+  }
+  .bio {
+    margin: 0 auto;
+    width: px2em(630px);
   }
 }
