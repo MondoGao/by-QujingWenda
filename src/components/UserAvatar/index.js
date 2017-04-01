@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './UserAvatar.scss'
 
-const UserAvatar = ({ user, size = 'sm' }) => (
-  <figure className={`${styles['avatar-wrapper']} ${styles[size]}`}>
+const UserAvatar = ({ user, size = 'sm', className }) => (
+  <figure className={`${styles['avatar-wrapper']} ${styles[size]} ${className}`}>
     <img src={user.avatar} alt={user.name}/>
   </figure>
 )
