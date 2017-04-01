@@ -12,7 +12,9 @@ class QuestionListContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.props.getData()
+    if (this.props.data.length < 1) {
+      this.props.getData()
+    }
   }
 
   handleScroll = (e) => {

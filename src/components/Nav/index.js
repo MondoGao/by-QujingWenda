@@ -6,9 +6,9 @@ import styles from './Nav.scss'
 const Nav = (props) => {
   return (
     <div className={styles.nav}>
-      <NavItem to="/" exact className={styles.hot}>热门</NavItem>
-      <NavItem to="/users"className={styles.user}>答主</NavItem>
-      <NavItem to="/me"className={styles.me}>我的</NavItem>
+      <NavItem to="/" exact replace className={styles.hot}>热门</NavItem>
+      <NavItem to="/users" replace className={styles.user}>答主</NavItem>
+      <NavItem to="/me" replace className={styles.me}>我的</NavItem>
     </div>
   )
 }

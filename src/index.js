@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import logger from 'redux-logger'
 import { AppContainer } from 'react-hot-loader';
 
 import reducers from 'reducers/index'
 
 import App from 'components/App';
 
-let store = createStore(reducers)
+let store = createStore(
+  reducers,
+  applyMiddleware(logger)
+)
 
 const render = (Component) => {
   ReactDOM.render(
