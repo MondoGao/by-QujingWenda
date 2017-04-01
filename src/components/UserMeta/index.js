@@ -6,8 +6,8 @@ import SchoolContainer from 'containers/SchoolContainer'
 
 const UserMeta = ({ user, myself = false }) => {
   const descPairs = [
-    <DescPair title="听过" content={user.listenTo.length}/>,
-    <DescPair className={styles['auto-width']} type="ch" title="学校" content={
+    <DescPair key="listenTo" title="听过" content={user.listenTo.length}/>,
+    <DescPair key="school" className={styles['auto-width']} type="ch" title="学校" content={
       <SchoolContainer id={user.school}/>
     }/>
   ]

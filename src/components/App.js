@@ -15,7 +15,7 @@ const App = (props) => (
   <div>
     <Route path="/" exact render={() => <QuestionListContainer/>}/>
     <Route path="/users" render={() => <UserListContainer/>}/>
-    <Route path="/me" render={() => <MePageContainer/>}/>
+    <Route path="/me" component={MePageContainer}/>
     <Nav/>
   </div>
 )

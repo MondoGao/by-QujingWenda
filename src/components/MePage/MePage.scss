@@ -14,5 +14,39 @@
 }
 
 .information {
+  margin-bottom: px2em(15px);
+}
 
+.nav {
+  margin-bottom: 1px;
+  height: px2em(98px);
+  line-height: px2em(98px);
+  @include font-dpr(28px);
+  color: #484756;
+  background-color: #ffffff;
+  letter-spacing: px2em(.64px);
+  li {
+    position: relative;
+    display: inline-block;
+    width: 33.33%;
+    text-align: center;
+    a{
+      &.active:after {
+        opacity: 1;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: px2em(-35px);
+        width: px2em(70px);
+        height: px2em(8px);
+        background-color: #e8646e;
+        border-radius: 100px;
+        opacity: 0;
+        transition: opacity .3s;
+      }
+    }
+  }
 }
