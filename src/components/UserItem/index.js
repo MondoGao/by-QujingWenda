@@ -1,6 +1,7 @@
 import React from 'react'
 
 import UserAvatar from 'components/UserAvatar'
+import Button from 'components/Button'
 
 import styles from './UserItem.scss'
 
@@ -32,9 +33,5 @@ const DescPair = ({ title, content, type = 'en' }) => (
 DescPair.PropsType = {
   type: React.PropTypes.oneOf(['en, ch'])
 }
-
-const Button = ({ children, className }) => (
-  <span className={`${styles.button} ${className}`}>{children}</span>
-)
 
 export default UserItem

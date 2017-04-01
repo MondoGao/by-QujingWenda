@@ -1,0 +1,13 @@
+@import "~styles/utils";
+
+.button {
+  display: inline-block;
+  border: 1px solid #e8646e;
+  border-radius: 100px;
+  width: px2em(143px);
+  height: px2em(55px);
+  color: #e8646e;
+  line-height: px2em(55px);
+  @include font-dpr(24px);
+  text-align: center;
+}
