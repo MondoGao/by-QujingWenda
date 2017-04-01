@@ -32,8 +32,8 @@ class QuestionListContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    data: state.questions,
-    isLoading: state.hotPage.isLoading
+    data: state.entities.questions,
+    isLoading: state.pages.hot.isLoading
   }
 }
 
