@@ -15,8 +15,18 @@ function hot(state = {isLoading: false}, action) {
   }
 }
 
+function me(state = {isLoading: false, lastTab: 'asked'}, action) {
+  switch (action.type) {
+    case consts.UPDATE_LAST_TAB:
+      return {...state, lastTab: action.payload}
+    default:
+      return state
+  }
+}
+
 const pages = combineReducers({
-  hot
+  hot,
+  me
 })
 
 export default pages

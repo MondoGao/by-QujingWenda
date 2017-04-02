@@ -21,3 +21,10 @@ export function toggleRequest(page, isLoading) {
     isLoading
   }
 }
+
+export function updateLastTab(tabUrl) {
+  return {
+    type: consts.UPDATE_LAST_TAB,
+    payload: tabUrl
+  }
+}

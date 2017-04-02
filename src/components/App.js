@@ -7,13 +7,13 @@ import {
 import './App.scss';
 
 import Nav from 'components/Nav'
-import QuestionListContainer from 'containers/QuestionListContainer'
+import HotPageContainer from 'containers/HotPageContainer.js'
 import UserListContainer from 'containers/UserListContainer'
 import MePageContainer from 'containers/MePageContainer'
 
 const App = (props) => (
   <div>
-    <Route path="/" exact render={() => <QuestionListContainer/>}/>
+    <Route path="/" exact render={() => <HotPageContainer/>}/>
     <Route path="/users" render={() => <UserListContainer/>}/>
     <Route path="/me" component={MePageContainer}/>
     <Nav/>

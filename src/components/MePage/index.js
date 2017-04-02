@@ -1,12 +1,13 @@
 import React from 'react'
-import { Route, NavLink, Link, Redirect } from 'react-router-dom'
+import { Route, NavLink, Link, Redirect, Switch } from 'react-router-dom'
 
 import styles from './MePage.scss'
 
 import Button from 'components/Button'
 import UserMetaContainer from 'containers/UserMetaContainer'
+import FilterQuestionList from 'containers/FilterQuestionList'
 
-const MePage = ({ myself }) => (
+const MePage = ({ myself, lastTab, updateLastTab }) => (
   <div className={styles['me-container']}>
     <section className={styles.information}>
       <UserMetaContainer myself id={myself.id}/>
@@ -14,14 +15,28 @@ const MePage = ({ myself }) => (
     </section>
     <section>
       <ul className={styles.nav}>
-        <li><NavLink to="/me/asked" activeClassName={styles.active}>问我的</NavLink></li>
-        <li><NavLink to="/me/asking" activeClassName={styles.active}>我问的</NavLink></li>
-        <li><NavLink to="/me/listened" activeClassName={styles.active}>我听过</NavLink></li>
+        <li><NavLink to="/me/asked" onClick={() => updateLastTab('asked')} activeClassName={styles.active}>问我的</NavLink></li>
+        <li><NavLink to="/me/asking" onClick={() => updateLastTab('asking')} activeClassName={styles.active}>我问的</NavLink></li>
+        <li><NavLink to="/me/listened" onClick={() => updateLastTab('listened')} activeClassName={styles.active}>我听过</NavLink></li>
       </ul>
-      <Route path={`/me/asked`} component={Button}/>
     </section>
-    <Redirect path="/me/" to="/me/asked"/>
+    <Switch>
+      <Route path={`/me/asked`} render={() => <FilterQuestionList filter="answerTo" userId={myself.id}/>}/>
+      <Route path={`/me/asking`} render={() => <FilterQuestionList filter="askTo" userId={myself.id}/>}/>
+      <Route path={`/me/listened`} render={() => <FilterQuestionList filter="listenTo" userId={myself.id}/>}/>
+      <Route path="/me" render={() => <ForceRedirect to={`/me/${lastTab}`}/>}/>
+    </Switch>
   </div>
 )
+
+class ForceRedirect extends React.Component {
+  shouldComponentUpdate() {
+    return true
+  }
+
+  render() {
+    return <Redirect {...this.props}/>
+  }
+}
 
 export default MePage
