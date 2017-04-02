@@ -1,7 +1,5 @@
 import { normalize, schema } from 'normalizr'
 
-import avatar from 'assets/tab_hot_h.png'
-
 const question = new schema.Entity('questions')
 const school = new schema.Entity('schools')
 const user = new schema.Entity('users', {
@@ -23,7 +21,7 @@ export function getUsers() {
         id: 1,
         name: '华中科技大学',
       },
-      avatar,
+      avatar: require('sources/avatar2.jpg'),
       answerTo: [{
         id: 2,
         content: '听说柳柳很美，是不是真的？',
@@ -37,6 +35,13 @@ export function getUsers() {
         content: '听说灿神很帅，是不是真的？',
         listenByNum: 22,
         askUser: 1
+      },
+      {
+        id: 3,
+        content: '我感觉人生好失败，该怎么办呢？',
+        listenByNum: 868,
+        answerUser: 3,
+        askUser: 1
       }]
     },
     {
@@ -49,12 +54,45 @@ export function getUsers() {
         id: 1,
         name: '华中科技大学',
       },
-      avatar,
+      avatar: require('sources/avatar.jpg'),
       answerTo: [{
         id: 1,
         content: '听说灿神很帅，是不是真的？',
         listenByNum: 22,
         answerUser: 2,
+        askUser: 1
+      }],
+      listenTo: [{
+        id: 3,
+        content: '我感觉人生好失败，该怎么办呢？',
+        listenByNum: 868,
+        answerUser: 3,
+        askUser: 1
+      }],
+      askByMe: [{
+        id: 2,
+        content: '你美不美？',
+        listenByNum: 10,
+        answerUser: 1,
+        askUser: 2
+      }]
+    },
+    {
+      id: 3,
+      name: '杨子灿',
+      bio: '失败者',
+      role: 2,
+      price: 9999,
+      school: {
+        id: 1,
+        name: '华中科技大学',
+      },
+      avatar: require('sources/avatar3.png'),
+      answerTo: [{
+        id: 3,
+        content: '我感觉人生好失败，该怎么办呢？',
+        listenByNum: 868,
+        answerUser: 3,
         askUser: 1
       }],
       listenTo: [{
@@ -64,13 +102,7 @@ export function getUsers() {
         answerUser: 1,
         askUser: 2
       }],
-      askByMe: [{
-        id: 2,
-        content: '你美不美？',
-        listenByNum: 10,
-        answerUser: 1,
-        askUser: 2
-      }]
+      askByMe: []
     }
   ]).then((data) => normalize(data,  [ user ]))
 }

@@ -15,9 +15,9 @@ const MePage = ({ myself, lastTab, updateLastTab }) => (
     </section>
     <section>
       <ul className={styles.nav}>
-        <li><NavLink to="/me/asked" onClick={() => updateLastTab('asked')} activeClassName={styles.active}>问我的</NavLink></li>
-        <li><NavLink to="/me/asking" onClick={() => updateLastTab('asking')} activeClassName={styles.active}>我问的</NavLink></li>
-        <li><NavLink to="/me/listened" onClick={() => updateLastTab('listened')} activeClassName={styles.active}>我听过</NavLink></li>
+        <li><NavLink to="/me/asked" replace onClick={() => updateLastTab('asked')} activeClassName={styles.active}>问我的</NavLink></li>
+        <li><NavLink to="/me/asking" replace onClick={() => updateLastTab('asking')} activeClassName={styles.active}>我问的</NavLink></li>
+        <li><NavLink to="/me/listened" replace onClick={() => updateLastTab('listened')} activeClassName={styles.active}>我听过</NavLink></li>
       </ul>
     </section>
     <Switch>
