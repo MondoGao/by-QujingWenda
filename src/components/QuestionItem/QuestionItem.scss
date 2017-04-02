@@ -14,6 +14,7 @@
     font-weight: normal;
     color: #484756;
     letter-spacing: px2em(-0.04px);
+    z-index: 1;
     &:before {
       content: "";
       display: inline-block;
@@ -64,9 +65,19 @@
     font-weight: normal;
   }
   p {
+    position: relative;
     margin-top: px2em(5px);
     @include font-dpr(24px);
     color: #84848c;
     letter-spacing: px2em(0.15px);
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 12em;
+      height: 1.2em;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 40%);
+    }
   }
 }
