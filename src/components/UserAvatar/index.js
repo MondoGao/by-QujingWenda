@@ -1,17 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './UserAvatar.scss'
 
-const UserAvatar = ({ user, size = 'sm', className }) => (
-  <figure className={`${styles['avatar-wrapper']} ${styles[size]} ${className}`}>
-    <img src={user.avatar} alt={user.name}/>
-  </figure>
-)
+const UserAvatar = ({ user, size = 'sm', className }) => {
+  let avatar = null
+  switch (size) {
+    case 'lg':
+      avatar = <img src={user.avatar} alt={user.name}/>
+      break
+    default:
+      avatar = (
+        <Link to={`/users/${user.id}`}>
+          <img src={user.avatar} alt={user.name}/>
+        </Link>
+      )
+  }
+  return (
+    <figure className={`${styles['avatar-wrapper']} ${styles[size]} ${className}`}>
+      {avatar}
+    </figure>
+  )
+}
 
 UserAvatar.propTypes = {
-  user: React.PropTypes.shape({
-    avatar: React.PropTypes.string,
-    name: React.PropTypes.string
-  }),
+  user: React.PropTypes.object,
   size: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg'])
 }
 

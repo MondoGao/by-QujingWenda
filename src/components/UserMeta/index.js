@@ -4,20 +4,20 @@ import styles from './UserMeta.scss'
 import UserAvatar from 'components/UserAvatar'
 import SchoolContainer from 'containers/SchoolContainer'
 
-const UserMeta = ({ user, myself = false }) => {
+const UserMeta = ({ user, only = false }) => {
   const descPairs = [
     <DescPair key="listenTo" title="听过" content={user.listenTo.length}/>,
     <DescPair key="school" className={styles['auto-width']} type="ch" title="学校" content={
       <SchoolContainer id={user.school}/>
     }/>
   ]
-  if (myself) {
+  if (only) {
     descPairs.reverse()
   }
 
   return (
-    <div className={myself ? styles.myself : ''}>
-      <UserAvatar className={styles.avatar} user={{ name: user.name,  avatar: user.avatar}} size={myself ? 'lg' : 'md'}/>
+    <div className={only ? styles.only : ''}>
+      <UserAvatar className={styles.avatar} user={user} size={only ? 'lg' : 'md'}/>
       <div className={styles['meta-wrapper']}>
         <h4 className={styles.name}>
           {user.name}

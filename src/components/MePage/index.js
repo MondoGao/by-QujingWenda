@@ -10,7 +10,7 @@ import FilterQuestionList from 'containers/FilterQuestionList'
 const MePage = ({ myself, lastTab, updateLastTab }) => (
   <div className={styles['me-container']}>
     <section className={styles.information}>
-      <UserMetaContainer myself id={myself.id}/>
+      <UserMetaContainer only id={myself.id}/>
       <Button className={styles['btn-upgrade']} disable><Link to="#">成为答主</Link></Button>
     </section>
     <section>
