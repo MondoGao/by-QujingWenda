@@ -4,14 +4,20 @@ import styles from './UserItem.scss'
 
 import Button from 'components/Button'
 import UserMeta from 'components/UserMeta'
+import withMyself from 'containers/withMyself'
 
-const UserItem = ({ user }) => (
-  <article className={styles.card}>
-    <UserMeta user={user}/>
-    <Link to={`/users/${user.id}`}>
-      <Button className={styles['ask-button']}>¥{user.price} 提问</Button>
-    </Link>
-  </article>
-)
+const UserItem = ({ user, myself }) => {
+  if (user.id === myself.id) {
+    return null
+  }
+  return (
+    <article className={styles.card}>
+      <UserMeta user={user}/>
+      <Link to={`/users/${user.id}`}>
+        <Button className={styles['ask-button']}>¥{user.price} 提问</Button>
+      </Link>
+    </article>
+  )
+}
 
-export default UserItem
+export default withMyself(UserItem)

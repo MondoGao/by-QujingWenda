@@ -25,19 +25,19 @@
   height: px2em(77px);
   line-height: px2em(77px);
   color: #fff;
-  text-align: center;
   @include font-dpr(28px);
   letter-spacing: px2em(-0.04px);
   background-color: #e8646e;
   border-radius: px2em(100px);
   overflow: hidden;
   h6 {
+    display: inline-block;
     font-size: inherit;
     font-weight: normal;
   }
   > figure {
-    position: absolute;
-    left: px2em(6px);
+    display: inline-block;
+    margin: 0 px2em(15px) 0 px2em(8px);
     @include font-dpr(24px);
     figcaption {
       display: inline-block;
@@ -47,7 +47,6 @@
       content: '';
       display: inline-block;
       position: relative;
-      top: px2em(2px);
       margin-right: px2em(2px);
       width: px2em(14px);
       height: px2em(20px);
@@ -58,7 +57,6 @@
 
 .answer-playing-progress {
   @extend .answer-voice;
-  content: "";
   position: absolute;
   right: 100%;
   background-color: #e8939a;
