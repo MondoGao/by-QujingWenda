@@ -52,6 +52,9 @@ module.exports = {
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
+    }),
+    new Webpack.ProvidePlugin({
+      wx: 'weixin-js-sdk'
     })
   ]
 }
