@@ -6,13 +6,12 @@ import QuestionList from 'components/QuestionList'
 const getFilterQuestions = (state, filter, userId) => {
   const questions = state.entities.questions
   const users = state.entities.users
-  return Object.keys(questions).map((key) => {
-    return {
-      ...questions[key],
-      answerUser: users[questions[key].answerUser],
-      askUser: users[questions[key].askUser]
-    }
-  })
+  const me = users[userId]
+  return me[filter].map((quesId) => ({
+    ...questions[quesId],
+    answerUser: users[questions[quesId].answerUser],
+    askUser: users[questions[quesId].askUser]
+  }))
 }
 
 const mapState = (state, ownProps) => ({

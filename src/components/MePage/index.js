@@ -22,7 +22,7 @@ const MePage = ({ myself, lastTab, updateLastTab }) => (
     </section>
     <Switch>
       <Route path={`/me/asked`} render={() => <FilterQuestionList filter="answerTo" userId={myself.id}/>}/>
-      <Route path={`/me/asking`} render={() => <FilterQuestionList filter="askTo" userId={myself.id}/>}/>
+      <Route path={`/me/asking`} render={() => <FilterQuestionList filter="askByMe" userId={myself.id}/>}/>
       <Route path={`/me/listened`} render={() => <FilterQuestionList filter="listenTo" userId={myself.id}/>}/>
       <Route path="/me" render={() => <ForceRedirect to={`/me/${lastTab}`}/>}/>
     </Switch>
