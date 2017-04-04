@@ -5,6 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.base.config')
 
 module.exports = WebpackMerge(baseConfig, {
+  entry: {
+    index: [
+      'whatwg-fetch',
+      './src/index.js'
+    ]
+  },
   module: {
     rules: [
       {
