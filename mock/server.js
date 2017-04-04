@@ -19,7 +19,12 @@ server.get('/users/:id/questions', (req, res) => {
   if (parseInt(parsedUrl.query.type) == 3) {
     data = questions.filter((question) => question.isPaid && question['askerId'] != userId && question['answererId'] != userId)
   } else {
-    data = questions.filter((question) => question[types[parseInt(parsedUrl.query.type) - 1] + 'Id'] == userId)
+    data = questions.filter((question) => question[types[parseInt(parsedUrl.query.type) - 1] + 'Id'] == userId).map(question => Object.assign({},
+      question,
+      {
+        answerer: db.users.find(user => question.answererId == user.id),
+        asker: db.users.find(user => question.askerId == user.id)
+      }))
   }
 
   res.jsonp(data)

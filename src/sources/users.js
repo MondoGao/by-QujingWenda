@@ -1,15 +1,15 @@
 import { normalize, schema } from 'normalizr'
 
-const question = new schema.Entity('questions')
-const school = new schema.Entity('schools')
-const user = new schema.Entity('users', {
-  answerTo: [ question ],
-  listenTo: [ question ],
-  askByMe: [ question ],
-  school
+const question2 = new schema.Entity('questions')
+const school2 = new schema.Entity('schools')
+const user2 = new schema.Entity('users', {
+  answerTo: [ question2 ],
+  listenTo: [ question2 ],
+  askByMe: [ question2 ],
+  school2
 })
 
-export function getUsers() {
+export function getUsers2() {
   return Promise.resolve([
     {
       id: 1,
@@ -104,5 +104,30 @@ export function getUsers() {
       }],
       askByMe: []
     }
-  ]).then((data) => normalize(data,  [ user ]))
+  ]).then((data) => normalize(data,  [ user2 ]))
+}
+
+import { commonFetchGet } from 'sources/utils'
+import { user, users, questions } from 'sources/schemas'
+
+export function getUsers(page = 1) {
+  return commonFetchGet(`/api/v1/users?page=${page}`, users)
+}
+
+
+export function getUser(id) {
+  if (!id) {
+    throw new Error('无效的用户id')
+  }
+
+  return commonFetchGet(`/api/v1/users/${id}`, user)
+}
+
+// type = 1 问我的|2 我问的|3 我听过
+export function getUserQuestions(id, page = 1, type = 1) {
+  if (!id) {
+    throw new Error('无效的用户id')
+  }
+
+  return commonFetchGet(`/api/v1/users/${id}/questions?type=${type}&page=${page}`, questions)
 }

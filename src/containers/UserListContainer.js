@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getUsers }  from 'sources'
+import { getUsers2 }  from 'sources'
 import { addUsers } from 'actions'
 import UserList from 'components/UserList'
 
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getData() {
     // dispatch(toggleRequest(consts.PAGES.HOT, true))
-    getUsers().then((data) => {
+    getUsers2().then((data) => {
       dispatch(addUsers(data))
       // dispatch(toggleRequest(consts.PAGES.HOT, false))
     })

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import QuestionList from 'components/QuestionList'
 import { addQuestions, addUsers, toggleRequest } from 'actions'
 import * as consts from 'actions/consts'
-import { getUsers }  from 'sources'
+import { getUsers2 }  from 'sources'
 
 class QuestionListContainer extends React.Component {
   constructor(props) {
@@ -45,7 +45,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getData() {
       dispatch(toggleRequest(consts.PAGES.HOT, true))
-      getUsers().then((data) => {
+      getUsers2().then((data) => {
         dispatch(addUsers(data))
         dispatch(toggleRequest(consts.PAGES.HOT, false))
       })

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import { AppContainer } from 'react-hot-loader';
 
 import reducers from 'reducers/index'
@@ -12,7 +13,10 @@ import App from 'components/App';
 
 let store = createStore(
   reducers,
-  applyMiddleware(logger)
+  applyMiddleware(
+    thunk,
+    logger
+  )
 )
 
 const render = (Component) => {
