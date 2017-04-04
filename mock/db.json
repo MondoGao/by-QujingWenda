@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "潘柳婧",
+      "schoolId": 1,
+      "avatar": "/assets/avatar.jpg",
+      "price": 5,
+      "bio": "冰岩作坊主管，腾讯产品经理",
+      "desc": "我是冰岩作坊主管，腾讯产品经理",
+      "role": 2,
+      "createTime": "2017"
+    },
+    {
+      "id": 2,
+      "name": "麦冬",
+      "schoolId": 1,
+      "avatar": "/assets/avatar1.jpg",
+      "price": 50,
+      "bio": "前端开发、表演朗诵达人",
+      "desc": "我是前端开发、表演朗诵达人",
+      "role": 2,
+      "createTime": "2017"
+    },
+    {
+      "id": 3,
+      "name": "杨子灿",
+      "schoolId": 1,
+      "avatar": "/assets/avatar2.jpg",
+      "price": 5,
+      "bio": "失败者",
+      "desc": "我怎么这么失败",
+      "role": 2,
+      "createTime": "2017"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "content": "問題的內容",
+      "askerId": 1,
+      "answererId": 2,
+      "price": 50,
+      "audioUrl": "#",
+      "isAnswered": true,
+      "createTime": "2017"
+    },
+    {
+      "id": 2,
+      "content": "問題的內容",
+      "askerId": 2,
+      "answererId": 1,
+      "price": 5,
+      "audioUrl": "#",
+      "isAnswered": true,
+      "createTime": "2017"
+    }
+  ],
+  "schools": [
+    {
+      "id": 1,
+      "name": "华中科技大学"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "/api/v1": "/",
+  "/askers/": "/users/",
+  "/askers": "/users"
+}
