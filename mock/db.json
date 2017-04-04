@@ -4,34 +4,40 @@
       "id": 1,
       "name": "潘柳婧",
       "schoolId": 1,
-      "avatar": "/assets/avatar.jpg",
+      "avatar": "/assets/avatar2.jpg",
       "price": 5,
       "bio": "冰岩作坊主管，腾讯产品经理",
       "desc": "我是冰岩作坊主管，腾讯产品经理",
       "role": 2,
-      "createTime": "2017"
+      "createTime": "2017",
+      "income": "9999",
+      "listenedNum": 90
     },
     {
       "id": 2,
       "name": "麦冬",
       "schoolId": 1,
-      "avatar": "/assets/avatar1.jpg",
+      "avatar": "/assets/avatar.jpg",
       "price": 50,
       "bio": "前端开发、表演朗诵达人",
       "desc": "我是前端开发、表演朗诵达人",
       "role": 2,
-      "createTime": "2017"
+      "createTime": "2017",
+      "income": "9999",
+      "listenedNum": 90
     },
     {
       "id": 3,
       "name": "杨子灿",
       "schoolId": 1,
-      "avatar": "/assets/avatar2.jpg",
+      "avatar": "/assets/avatar3.jpg",
       "price": 5,
       "bio": "失败者",
       "desc": "我怎么这么失败",
       "role": 2,
-      "createTime": "2017"
+      "createTime": "2017",
+      "income": "9999",
+      "listenedNum": 90
     }
   ],
   "questions": [
@@ -41,9 +47,10 @@
       "askerId": 1,
       "answererId": 2,
       "price": 50,
-      "audioUrl": "#",
+      "audioUrl": "/assets/happy_days.mp3",
       "isAnswered": true,
-      "createTime": "2017"
+      "createTime": "2017",
+      "isPaid": true
     },
     {
       "id": 2,
@@ -51,9 +58,21 @@
       "askerId": 2,
       "answererId": 1,
       "price": 5,
-      "audioUrl": "#",
+      "audioUrl": "/assets/happy_days.mp3",
       "isAnswered": true,
-      "createTime": "2017"
+      "createTime": "2017",
+      "isPaid": true
+    },
+    {
+      "id": 3,
+      "content": "問題的內容",
+      "askerId": 3,
+      "answererId": 2,
+      "price": 50,
+      "audioUrl": "/assets/happy_days.mp3",
+      "isAnswered": true,
+      "createTime": "2017",
+      "isPaid": true
     }
   ],
   "schools": [
