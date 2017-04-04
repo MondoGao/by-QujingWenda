@@ -9,7 +9,7 @@ const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
 
-server.get(['/users/:id/questions', '/api/v1/users/:id/questions'], (req, res) => {
+server.get('/users/:id/questions', (req, res) => {
   let data = []
   let parsedUrl = url.parse(req.url, true)
   let userId = req.params.id
@@ -61,8 +61,6 @@ router.render = (req, res) => {
 }
 
 server.use(express.static(path.resolve(__dirname, 'public')))
-server.use('/api/v1', router)
 server.use(router)
-server.listen(3000, () => {
-  console.log('JSON Mock Server is Running')
-})
+
+module.exports = server
