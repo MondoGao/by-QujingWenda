@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getUsers }  from 'sources'
-import { addUsers } from 'actions'
+import * as sources from 'sources'
+import { appendUsers } from 'actions'
 import UserList from 'components/UserList'
 
 class UserListContainer extends React.Component {
@@ -18,16 +18,16 @@ class UserListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.entities.users
+  data: Object.keys(state.entities.users).map(key => ({
+    ...state.entities.users[key],
+    school: state.entities.schools[state.entities.users[key].schoolId],
+    answeringNum: Object.keys(state.entities.questions).filter((key2) => state.entities.questions[key2].answererId == state.entities.users[key].id).length
+  }))
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getData() {
-    // dispatch(toggleRequest(consts.PAGES.HOT, true))
-    getUsers().then((data) => {
-      dispatch(addUsers(data))
-      // dispatch(toggleRequest(consts.PAGES.HOT, false))
-    })
+    dispatch(appendUsers())
   }
 })
 

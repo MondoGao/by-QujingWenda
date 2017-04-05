@@ -8,7 +8,7 @@ const UserMeta = ({ user, only = false }) => {
   const descPairs = [
     <DescPair key="listenTo" title="听过" content={user.listenedNum}/>,
     <DescPair key="school" className={styles['auto-width']} type="ch" title="学校" content={
-      <SchoolContainer id={user.school}/>
+      <SchoolContainer id={user.schoolId}/>
     }/>
   ]
   if (only) {
@@ -23,7 +23,7 @@ const UserMeta = ({ user, only = false }) => {
           {user.name}
         </h4>
         <ul className={styles['desc-group']}>
-          <DescPair title="回答" content={user.answerNum}/>
+          <DescPair title="回答" content={user.answeringNum}/>
           {descPairs}
         </ul>
         <p className={styles.bio}>{user.bio}</p>

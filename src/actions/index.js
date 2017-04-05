@@ -13,7 +13,7 @@ const togglePagesLoading = (page, isLoading) => ({
   }
 })
 
-export const appendQuestions = page => (dispatch, getState) => {
+export const appendQuestions = () => (dispatch, getState) => {
   let prevPage = getState().pages.hot.page
   dispatch(togglePagesLoading(consts.PAGES.HOT, true))
   sources.getQuestions(prevPage + 1)
@@ -21,6 +21,18 @@ export const appendQuestions = page => (dispatch, getState) => {
       dispatch(asyncActionsCreator(consts.APPEND_QUESTIONS, normalizedData))
 
       dispatch(togglePagesLoading(consts.PAGES.HOT, false))
+    })
+}
+
+export const appendUsers = () => (dispatch, getState) => {
+  let prevPage = getState().pages.users.page
+
+  dispatch(togglePagesLoading(consts.PAGES.USERS, true))
+  sources.getUsers(prevPage + 1)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.APPEND_USERS, normalizedData))
+
+      dispatch(togglePagesLoading(consts.PAGES.USERS, false))
     })
 }
 

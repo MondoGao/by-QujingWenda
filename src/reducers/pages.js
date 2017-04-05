@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import * as consts from 'actions/consts'
 
-function hot(state = {isLoading: false}, action) {
+function hot(state = {isLoading: false, page: 0}, action) {
   switch (action.type) {
     case consts.UPDATE_PAGE_HOT:
       return Object.assign({}, state, {
@@ -11,6 +11,10 @@ function hot(state = {isLoading: false}, action) {
     default:
       return state
   }
+}
+
+function users(state = { page: 0 }) {
+  return state
 }
 
 function me(state = {isLoading: false, lastTab: 'asked'}, action) {
@@ -31,6 +35,7 @@ function me(state = {isLoading: false, lastTab: 'asked'}, action) {
 
 const pages = combineReducers({
   hot,
+  users,
   me
 })
 
