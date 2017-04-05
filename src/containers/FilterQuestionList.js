@@ -1,21 +1,55 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import QuestionList from 'components/QuestionList'
 
 const getFilterQuestions = (state, filter, userId) => {
   const questions = state.entities.questions
   const users = state.entities.users
-  const me = users[userId]
-  return me[filter].map((quesId) => ({
-    ...questions[quesId],
-    answerUser: users[questions[quesId].answerUser],
-    askUser: users[questions[quesId].askUser]
-  }))
+  const user = users[userId]
+
+  switch (filter) {
+    case 'askByMe':
+      return Object.keys(questions).map(key => {
+        let question = questions[key]
+        if (question.askerId == userId) {
+          return {
+            ...question,
+            asker: user,
+            answerer: users[question.answererId]
+          }
+        }
+      })
+    case 'answerTo':
+      return Object.keys(questions).map(key => {
+        let question = questions[key]
+        if (question.answererId == userId) {
+          return {
+            ...question,
+            answerer: user,
+            asker: users[question.askerId]
+          }
+        }
+      })
+    case 'listenTo':
+      return Object.keys(questions).map(key => {
+        let question = questions[key]
+        if (question.isPaid) {
+          return {
+            ...question,
+            asker: users[question.askerId],
+            answerer: users[question.answererId]
+          }
+        }
+      })
+  }
 }
 
 const mapState = (state, ownProps) => ({
   data: getFilterQuestions(state, ownProps.filter, ownProps.userId)
+})
+
+const mapDispatch = (dispatch) => ({
+
 })
 
 const FilterQuestionList = connect(mapState)(QuestionList)

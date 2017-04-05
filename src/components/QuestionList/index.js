@@ -5,7 +5,12 @@ import QuestionItem from 'components/QuestionItem'
 
 const QuestionList = ({ data, onListScroll }) => (
   <section className={styles['list']} onScroll={onListScroll}>
-    {Object.keys(data).map((key) => <QuestionItem key={data[key].id} data={data[key]}/>)}
+    {Object.keys(data).map((key) => {
+      if (!data[key]) {
+        return null
+      }
+      return <QuestionItem key={data[key].id} data={data[key]}/>
+    })}
   </section>
 )
 

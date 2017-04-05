@@ -1,8 +1,6 @@
 import React from 'react'
 import { Route, NavLink, Link, Redirect, Switch } from 'react-router-dom'
-
 import styles from './MePage.scss'
-
 import Button from 'components/Button'
 import UserMetaContainer from 'containers/UserMetaContainer'
 import FilterQuestionList from 'containers/FilterQuestionList'

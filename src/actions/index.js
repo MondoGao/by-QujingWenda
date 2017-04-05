@@ -36,9 +36,9 @@ export const appendUsers = () => (dispatch, getState) => {
     })
 }
 
-export function updateLastTab(tabUrl) {
-  return {
-    type: consts.UPDATE_LAST_TAB,
-    payload: tabUrl
+export const updateLastTab = (lastTab) => ({
+  type: consts.UPDATE_PAGE_ME,
+  payload: {
+    lastTab
   }
-}
+})
