@@ -4,13 +4,14 @@ import styles from './UserMeta.scss'
 import UserAvatar from 'components/UserAvatar'
 import SchoolContainer from 'containers/SchoolContainer'
 
-const UserMeta = ({ user, only = false }) => {
-  const descPairs = [
-    <DescPair key="listenTo" title="听过" content={user.listenedNum}/>,
+const UserMeta = ({ user, myself, only = false }) => {
+  let descPairs = [
+    user.id === myself.id ? <DescPair key="incom" title="收入" content={user.income}/> : <DescPair key="listenTo" title="听过" content={user.listenedNum}/>,
     <DescPair key="school" className={styles['auto-width']} type="ch" title="学校" content={
       <SchoolContainer id={user.schoolId}/>
     }/>
   ]
+
   if (only) {
     descPairs.reverse()
   }
@@ -31,7 +32,6 @@ const UserMeta = ({ user, only = false }) => {
     </div>
   )
 }
-
 
 const DescPair = ({ title, content, type = 'en', className }) => (
   <li className={`${styles['desc-item']} ${styles[type]} ${className}`}>

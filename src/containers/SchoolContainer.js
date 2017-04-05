@@ -2,10 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class SchoolContainer extends React.Component {
-  componentWillMount() {
-
-  }
-
   render() {
     if (!this.props.school){
       return null

@@ -7,10 +7,6 @@ import EntityList from 'components/EntityList'
 import QuestionItemContainer from 'containers/QuestionItemContainer'
 
 class HotPageContainer extends React.Component {
-  constructor(props) {
-    super (props)
-  }
-
   handleScroll = (e) => {
     if (!this.props.isLoading && e.target.scrollHeight - window.innerHeight - e.target.scrollTop < 100) {
       this.props.appendData()
@@ -21,7 +17,7 @@ class HotPageContainer extends React.Component {
     return (
       <EntityList
         onListScroll={this.handleScroll}
-        entityIds={this.props.questionsIds} entity={QuestionItemContainer}/>
+        entityIds={this.props.page.list} entity={QuestionItemContainer}/>
     )
   }
 
@@ -32,19 +28,14 @@ class HotPageContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    questionsIds: state.pages.hot.list,
-    page: state.pages.hot
-  }
-}
+const mapState = state => ({
+  page: state.pages.hot
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    appendData(page = 1) {
-      dispatch(appendQuestions(page))
-    }
+const mapDispatch = dispatch => ({
+  appendData() {
+    dispatch(appendQuestions())
   }
-}
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotPageContainer)
+export default connect(mapState, mapDispatch)(HotPageContainer)

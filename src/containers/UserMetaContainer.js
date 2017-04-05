@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import UserMeta from 'components/UserMeta'
 
 const mapState = (state, ownProps) => ({
-  user: state.entities.users[ownProps.id]
+  user: state.entities.users[ownProps.id],
+  myself: state.myself
 })
 
 const mapDispatch = (dispatch, ownProps) => ({

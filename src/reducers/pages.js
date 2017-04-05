@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import * as consts from 'actions/consts'
 
-function hot(state = {isLoading: false, page: 0, list: [], isLoadComplete: false}, action) {
+function hot(state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) {
   switch (action.type) {
     case consts.UPDATE_PAGE_HOT_LOADING:
       return {
@@ -9,11 +9,19 @@ function hot(state = {isLoading: false, page: 0, list: [], isLoadComplete: false
         isLoading: action.payload.isLoading
       }
     case consts.APPEND_QUESTIONS:
+      const appendList = action.payload.result.filter(id => !state.list.includes(id))
+      if (appendList.length === 0) {
+        return {
+          ...state,
+          isLoadComplete: true
+        }
+      }
+
       return {
         ...state,
         list: [
           ...state.list,
-          ...action.payload.result
+          ...appendList
         ]
       }
     default:
@@ -21,8 +29,32 @@ function hot(state = {isLoading: false, page: 0, list: [], isLoadComplete: false
   }
 }
 
-function users(state = { page: 0 }) {
-  return state
+function users(state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) {
+  switch (action.type) {
+    case consts.UPDATE_PAGE_USERS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload.isLoading
+      }
+    case consts.APPEND_USERS:
+      const appendList = action.payload.result.filter(id => !state.list.includes(id))
+      if (appendList.length === 0) {
+        return {
+          ...state,
+          isLoadComplete: true
+        }
+      }
+
+      return {
+        ...state,
+        list: [
+          ...state.list,
+          ...appendList
+        ]
+      }
+    default:
+      return state
+  }
 }
 
 function me(state = {isLoading: false, lastTab: 'asked'}, action) {

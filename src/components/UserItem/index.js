@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 import styles from './UserItem.scss'
 
 import Button from 'components/Button'
-import UserMeta from 'components/UserMeta'
-import withMyself from 'containers/withMyself'
+import UserMetaContainer from 'containers/UserMetaContainer'
 
 const UserItem = ({ user, myself }) => {
-  if (user.id === myself.id) {
+  if (!user || user.id === myself.id) {
     return null
   }
+
   return (
     <article className={styles.card}>
-      <UserMeta user={user}/>
+      <UserMetaContainer id={user.id}/>
       <Link to={`/users/${user.id}`}>
         <Button className={styles['ask-button']}>¥{user.price} 提问</Button>
       </Link>
@@ -20,4 +20,4 @@ const UserItem = ({ user, myself }) => {
   )
 }
 
-export default withMyself(UserItem)
+export default UserItem

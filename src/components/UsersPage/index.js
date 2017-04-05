@@ -1,21 +1,32 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import UserListContainer from 'containers/UserListContainer'
+import EntityList from 'components/EntityList'
+import UserItemContainer from 'containers/UserItemContainer'
 import UserMetaContainer from 'containers/UserMetaContainer'
 
-const UsersPage = ({ myself }) => (
-  <div>
-    <Switch>
-      <Route path={`/users/${myself.id}`}>
-        <Redirect to="/me"/>
-      </Route>
-      <Route path="/users/:id" render={({ match }) => <UserMetaContainer id={match.params.id} only/>}/>
-      <Route path="/users">
-        <UserListContainer/>
-      </Route>
-    </Switch>
-  </div>
-)
+class UsersPage extends React.Component {
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route path={`/users/${this.props.myself.id}`}>
+            <Redirect to="/me"/>
+          </Route>
+          <Route path="/users/:id" render={({ match }) => <UserMetaContainer id={match.params.id} only/>}/>
+          <Route path="/users">
+            <EntityList entityIds={this.props.page.list} entity={UserItemContainer}/>
+          </Route>
+        </Switch>
+      </div>
+    )
+  }
+
+  componentDidMount() {
+    if (!this.props.page.isLoadComplete) {
+      this.props.appendData()
+    }
+  }
+}
 
 export default UsersPage

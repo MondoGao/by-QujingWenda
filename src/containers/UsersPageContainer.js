@@ -1,7 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import UsersPage from 'components/UsersPage'
-import withMyself from 'containers/withMyself.js'
+import { appendUsers } from 'actions'
 
-export default withMyself(UsersPage)
+import UsersPage from 'components/UsersPage'
+
+const mapState = state => ({
+  page: state.pages.users,
+  myself: state.myself
+})
+
+const mapDispatch = dispatch => ({
+  appendData() {
+    dispatch(appendUsers())
+  }
+})
+
+export default connect(mapState, mapDispatch)(UsersPage)

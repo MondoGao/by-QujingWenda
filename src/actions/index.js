@@ -15,8 +15,7 @@ const togglePagesLoading = (page, isLoading) => ({
 
 export const appendQuestions = () => (dispatch, getState) => {
   const state = getState()
-  const prevPage = getState().pages.hot.page
-  const isLoadingComplete = state.pages.hot.isLoadComplete
+  const { prevPage, isLoadingComplete } = state.pages.hot
 
   if (!isLoadingComplete) {
     dispatch(togglePagesLoading(consts.PAGES.HOT, true))
@@ -30,15 +29,18 @@ export const appendQuestions = () => (dispatch, getState) => {
 }
 
 export const appendUsers = () => (dispatch, getState) => {
-  let prevPage = getState().pages.users.page
+  const state = getState()
+  const { prevPage, isLoadingComplete } = state.pages.users
 
-  dispatch(togglePagesLoading(consts.PAGES.USERS, true))
-  sources.getUsers(prevPage + 1)
-    .then(normalizedData => {
-      dispatch(asyncActionsCreator(consts.APPEND_USERS, normalizedData))
+  if (!isLoadingComplete) {
+    dispatch(togglePagesLoading(consts.PAGES.USERS, true))
+    sources.getUsers(prevPage + 1)
+      .then(normalizedData => {
+        dispatch(asyncActionsCreator(consts.APPEND_USERS, normalizedData))
 
-      dispatch(togglePagesLoading(consts.PAGES.USERS, false))
-    })
+        dispatch(togglePagesLoading(consts.PAGES.USERS, false))
+      })
+  }
 }
 
 export const refreshUser = id => (dispatch, getState) => {

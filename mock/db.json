@@ -11,7 +11,8 @@
       "role": 2,
       "createTime": "2017",
       "income": "9999",
-      "listenedNum": 90
+      "listenedNum": 90,
+      "answeringNum": 100
     },
     {
       "id": 2,
@@ -24,7 +25,8 @@
       "role": 2,
       "createTime": "2017",
       "income": "9999",
-      "listenedNum": 90
+      "listenedNum": 90,
+      "answeringNum": 100
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@
       "role": 2,
       "createTime": "2017",
       "income": "9999",
-      "listenedNum": 90
+      "listenedNum": 90,
+      "answeringNum": 100
     }
   ],
   "questions": [
