@@ -10,16 +10,16 @@ const QuestionItem = ({ data }) => {
       <h5>华中科技大学</h5>
       <p className={styles.content}>{data.content}</p>
       <section className={styles['answer-container']}>
-        <UserAvatar user={data.answerUser}/>
+        <UserAvatar user={data.answerer}/>
         <AnswerVoiceProgress className={styles['answer-voice']}/>
         <div className={styles['answer-meta']}>
-          <p>价值{data.answerUser.price}元</p>
+          <p>价值{data.price}元</p>
           <p>{data.listenByNum}人听过</p>
         </div>
       </section>
       <section className={styles['user-meta']}>
-        <h4>{data.answerUser.name}</h4>
-        <p>{data.answerUser.bio}</p>
+        <h4>{data.answerer.name}</h4>
+        <p>{data.answerer.bio}</p>
       </section>
     </article>
   )

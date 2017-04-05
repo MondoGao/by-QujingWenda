@@ -3,12 +3,10 @@ import * as consts from 'actions/consts'
 
 function hot(state = {isLoading: false}, action) {
   switch (action.type) {
-    case consts.REQUEST_TOGGLE:
-      if (action.page === consts.PAGES.HOT) {
-        return Object.assign({}, state, {
-          isLoading: action.isLoading
-        })
-      }
+    case consts.UPDATE_PAGE_HOT:
+      return Object.assign({}, state, {
+        isLoading: action.payload.isLoading
+      })
       break
     default:
       return state
@@ -17,8 +15,15 @@ function hot(state = {isLoading: false}, action) {
 
 function me(state = {isLoading: false, lastTab: 'asked'}, action) {
   switch (action.type) {
-    case consts.UPDATE_LAST_TAB:
-      return {...state, lastTab: action.payload}
+    case consts.UPDATE_PAGE_ME:
+      let lastTab = action.payload.lastTab ? action.payload.lastTab : state.lastTab
+      let isLoading = action.payload.isLoading ? action.payload.isLoading : state.isLoading
+
+      return {
+        ...state,
+        lastTab,
+        isLoading
+      }
     default:
       return state
   }

@@ -39,6 +39,9 @@ module.exports = WebpackMerge(baseConfig, {
       "/api/v1": {
         target: "http://localhost:8081",
         pathRewrite: {"^/api/v1" : ""}
+      },
+      '/assets': {
+        target: 'http://localhost:8081'
       }
     }
   }
