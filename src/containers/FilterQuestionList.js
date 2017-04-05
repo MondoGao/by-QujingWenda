@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import QuestionList from 'components/QuestionList'
+import EntityList from 'components/EntityList'
 
 const getFilterQuestions = (state, filter, userId) => {
   const questions = state.entities.questions
@@ -52,11 +52,11 @@ const mapDispatch = (dispatch) => ({
 
 })
 
-const FilterQuestionList = connect(mapState)(QuestionList)
+const FilterEntityList = connect(mapState)(EntityList)
 
-FilterQuestionList.PropTypes = {
+FilterEntityList.PropTypes = {
   filter: React.PropTypes.oneOf(['askByMe', 'answerTo', 'listenTo']),
   userId: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 }
 
-export default FilterQuestionList
+export default FilterEntityList

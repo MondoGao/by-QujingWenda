@@ -1,19 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import QuestionList from 'components/QuestionList'
 import { appendQuestions } from 'actions'
-import * as consts from 'actions/consts'
+
+import EntityList from 'components/EntityList'
+import QuestionItemContainer from 'containers/QuestionItemContainer'
 
 class HotPageContainer extends React.Component {
   constructor(props) {
     super (props)
-  }
-
-  componentWillMount() {
-    if (this.props.questionsIds.length < 1) {
-      this.props.appendData()
-    }
   }
 
   handleScroll = (e) => {
@@ -24,17 +19,23 @@ class HotPageContainer extends React.Component {
 
   render() {
     return (
-      <QuestionList
+      <EntityList
         onListScroll={this.handleScroll}
-        questionsIds={this.props.questionsIds}/>
+        entityIds={this.props.questionsIds} entity={QuestionItemContainer}/>
     )
+  }
+
+  componentDidMount() {
+    if (!this.props.page.isLoadComplete) {
+      this.props.appendData()
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
     questionsIds: state.pages.hot.list,
-    isLoading: state.pages.hot.isLoading
+    page: state.pages.hot
   }
 }
 
