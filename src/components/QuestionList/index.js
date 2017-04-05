@@ -1,16 +1,11 @@
 import React from 'react'
 import styles from './QuestionList.scss'
 
-import QuestionItem from 'components/QuestionItem'
+import QuestionItemContainer from 'containers/QuestionItemContainer'
 
-const QuestionList = ({ data, onListScroll }) => (
+const QuestionList = ({ questionsIds, onListScroll }) => (
   <section className={styles['list']} onScroll={onListScroll}>
-    {Object.keys(data).map((key) => {
-      if (!data[key]) {
-        return null
-      }
-      return <QuestionItem key={data[key].id} data={data[key]}/>
-    })}
+    {questionsIds.map(questionId => <QuestionItemContainer key={questionId} questionId={questionId}/>)}
   </section>
 )
 

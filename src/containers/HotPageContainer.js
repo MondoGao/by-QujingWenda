@@ -11,7 +11,7 @@ class HotPageContainer extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.data.length < 1) {
+    if (this.props.questionsIds.length < 1) {
       this.props.appendData()
     }
   }
@@ -26,17 +26,14 @@ class HotPageContainer extends React.Component {
     return (
       <QuestionList
         onListScroll={this.handleScroll}
-        data={this.props.data}/>
+        questionsIds={this.props.questionsIds}/>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    data: Object.keys(state.entities.questions).map((key) => ({
-      ...state.entities.questions[key],
-      answerer: state.entities.users[state.entities.questions[key].answererId]
-    })),
+    questionsIds: state.pages.hot.list,
     isLoading: state.pages.hot.isLoading
   }
 }
