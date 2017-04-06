@@ -8,7 +8,7 @@ const mapState = (state, ownProps) => {
   const users =  state.entities.users
 
   return {
-    myself: state.myself.id,
+    myself: state.myself,
     answerer: users[question.answererId],
     asker: users[question.askerId],
     question

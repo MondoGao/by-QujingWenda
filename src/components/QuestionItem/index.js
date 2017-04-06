@@ -39,4 +39,13 @@ class QuestionItem extends React.Component {
   }
 }
 
+QuestionItem.propTypes = {
+  myself: React.PropTypes.shape({
+    id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
+  }),
+  answerer: React.PropTypes.object,
+  asker: React.PropTypes.object,
+  question: React.PropTypes.object.isRequired
+}
+
 export default QuestionItem
