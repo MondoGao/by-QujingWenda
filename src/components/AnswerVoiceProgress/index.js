@@ -63,26 +63,34 @@ class AnswerVoiceProgress extends React.Component {
    * @return void
    */
   handleClick = e => {
-    if (this.audio.paused) {
-      this.audio.play()
-      this.setState({
-        isPlaying: true,
-        canPaused: true
-      })
-    } else {
-      if (this.audio.ended) {
-        this.audio.currentTime = 0
+    if (this.props.question.isPaid) {
+      if (this.audio.paused) {
+        this.audio.play()
+        this.setState({
+          isPlaying: true,
+          canPaused: true
+        })
+      } else {
+        if (this.audio.ended) {
+          this.audio.currentTime = 0
+        }
+        this.audio.pause()
+        this.setState({
+          isPlaying: false
+        })
       }
-      this.audio.pause()
-      this.setState({
-        isPlaying: false
-      })
+    } else {
+      alert("跳转付款")
     }
   }
 
   render() {
     let state = 'normal'
     let title = '¥1 学习一个'
+    let source = null
+    if (this.props.question.isPaid) {
+      title = '重新收听'
+    }
     if (this.state.isPlaying) {
       state = 'playing'
       title = '正在播放'
@@ -96,9 +104,13 @@ class AnswerVoiceProgress extends React.Component {
         <div className={styles['answer-voice']}>
           <div className={styles['answer-playing-progress']} style={{right: `${90 - .9 * this.state.playedPercentage}%`}}/>
           <figure>
-            <audio className={styles.audio} onLoadedMetadata={this.handleLoadedMetaData} onEnded={this.handleAudioEnded} onTimeUpdate={this.handleTimeUpdate} ref={el => this.audio = el}>
-              <source src={this.props.question.audioUrl}/>
-            </audio>
+            <audio
+              className={styles.audio}
+              src={this.props.question.isPaid ? this.props.question.audioUrl : '#'}
+              onLoadedMetadata={this.handleLoadedMetaData}
+              onEnded={this.handleAudioEnded}
+              onTimeUpdate={this.handleTimeUpdate}
+              ref={el => this.audio = el}/>
             <figcaption>
               <icon/>
               <span>
