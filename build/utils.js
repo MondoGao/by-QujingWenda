@@ -8,7 +8,7 @@ function serve(Webpack, WebpackDevServer, webpackConfig) {
     console.log("Starting mock server")
   })
 
-  server.listen(webpackConfig.devServer.port, "127.0.0.1", function () {
+  server.listen(webpackConfig.devServer.port, "0.0.0.0", function () {
     console.log("Starting sever");
   });
 }
