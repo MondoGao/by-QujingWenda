@@ -17,7 +17,7 @@ FilterQuestionList.PropTypes = {
   filter: React.PropTypes.oneOf(['asked', 'asking', 'paid']),
   questionIds: React.PropTypes.array,
   type: React.PropTypes.number,
-  userId: React.PropTypes.oneOfType(React.PropTypes.number, React.PropTypes.string)
+  userId: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
 }
 
 
