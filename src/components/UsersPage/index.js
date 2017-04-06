@@ -40,7 +40,7 @@ const UserPage = ({ match }) => (
     <UserMetaContainer id={match.params.id} only/>
     <div className={styles['ask-container']}>
       <textarea id={styles.question} placeholder="在此输入你的问题。如果回答被别人收听，你将得到收入的一半。若超过48小时未被回答，费用会退回你的微信钱包。"/>
-      <Button size="lg">¥1 提个问题</Button>
+      <Button size="md">¥1 提个问题</Button>
     </div>
     <FilterQuestionList filter="asked" type={1} userId={match.params.id}/>
   </div>

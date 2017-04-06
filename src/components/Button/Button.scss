@@ -12,12 +12,21 @@
   text-align: center;
 }
 
-.lg {
+.md {
   border-width: px2em(2px);
   width: px2em(240px);
   height: px2em(61px);
   line-height: px2em(61px);
   font-weight: bold;
+}
+
+.lg {
+  border: px2em(2px) solid #e8646e;
+  border-radius: 100px;
+  width: px2em(233px);
+  height: px2em(78px);
+  line-height: px2em(72px);
+  @include font-dpr(28px);
 }
 
 .disable {

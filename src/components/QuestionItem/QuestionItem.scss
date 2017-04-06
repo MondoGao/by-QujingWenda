@@ -6,6 +6,22 @@
   width: 100%;
   padding: px2em(27px) px2em(30px) px2em(40px);
   background-color: #fff;
+
+}
+
+.card.not-answered {
+  .another-user {
+    margin-bottom: px2em(15px);
+    @include font-dpr(26px);
+    color: #484756;
+    letter-spacing: px2em(.16px);
+  }
+  .avatar {
+    margin-right: px2em(15px);
+  }
+}
+
+.card.answered {
   > h5 {
     position: absolute;
     right: px2em(28px);

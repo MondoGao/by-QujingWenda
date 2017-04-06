@@ -3,6 +3,7 @@ import styles from './QuestionItem.scss'
 
 import UserAvatar from 'components/UserAvatar'
 import AnswerVoiceProgress from 'components/AnswerVoiceProgress'
+import AnswerQuestion from 'components/AnswerQuestion'
 
 class QuestionItem extends React.Component {
   render() {
@@ -10,8 +11,33 @@ class QuestionItem extends React.Component {
       return null
     }
 
+    if (!this.props.question.isAnswered) {
+      let userDiv = null
+      const isAsker = this.props.myself.id === this.props.asker.id
+      const anotherUser = isAsker ? this.props.answerer : this.props.asker
+
+      if (anotherUser) {
+        userDiv = (
+          <div className={styles['another-user']}>
+            <UserAvatar className={styles.avatar} user={anotherUser} size='xs'/>
+            {(isAsker ? '向' : '') + anotherUser.name}的提问
+          </div>
+        )
+      }
+
+      return (
+        <article className={`${styles.card} ${styles['not-answered']}`}>
+          {userDiv}
+          <p className={styles.content}>
+            {this.props.question.content}
+          </p>
+          <AnswerQuestion isAnswerer={!isAsker} myself={this.props.myself}/>
+        </article>
+      )
+    }
+
     return (
-      <article className={styles.card}>
+      <article className={`${styles.card} ${styles.answered}`}>
         <h5>华中科技大学</h5>
         <p className={styles.content}>{this.props.question.content}</p>
         <section className={styles['answer-container']}>
