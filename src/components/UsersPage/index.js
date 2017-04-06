@@ -8,6 +8,7 @@ import UserItemContainer from 'containers/UserItemContainer'
 import UserMetaContainer from 'containers/UserMetaContainer'
 import Button from 'components/Button'
 import FilterQuestionList from 'containers/FilterQuestionList'
+import LoadingIcon from 'components/LoadingIcon'
 
 class UsersPage extends React.Component {
   render() {
@@ -19,7 +20,10 @@ class UsersPage extends React.Component {
           </Route>
           <Route path="/users/:id" component={UserPage}/>
           <Route path="/users">
-            <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
+            <div>
+              <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
+              <LoadingIcon isLoading={this.props.page.isLoading}/>
+            </div>
           </Route>
         </Switch>
       </div>

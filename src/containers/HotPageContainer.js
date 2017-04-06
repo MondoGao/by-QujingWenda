@@ -15,13 +15,13 @@ class HotPageContainer extends React.Component {
 
   render() {
     return (
-      <section>
+      <div>
         <EntityList
           onListScroll={this.handleScroll}
           entityIds={this.props.page.list}
           fullscreen/>
         <LoadingIcon isLoading={this.props.page.isLoading}/>
-      </section>
+      </div>
     )
   }
 
