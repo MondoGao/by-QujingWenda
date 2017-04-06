@@ -26,7 +26,7 @@ function users(state = {}, action) {
       let nextList = {
         [filter]: [
           ...list,
-          ...action.payload.result
+          ...action.payload.result.filter(key => !list.includes(key))
         ]
       }
       nextList[filter].page = prevPage + 1
@@ -47,6 +47,7 @@ function schools(state = {}, action) {
   switch (action.type) {
     case consts.APPEND_USERS:
     case consts.REFRESH_USER:
+    case consts.REFRESH_SCHOOL:
       return {...state, ...action.payload.entities.schools}
     default:
       return state

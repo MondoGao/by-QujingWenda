@@ -60,6 +60,13 @@ export const refreshUser = id => (dispatch, getState) => {
     })
 }
 
+export const refreshSchool = id => dispatch => {
+  sources.getSchool(id)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.REFRESH_SCHOOL, normalizedData))
+    })
+}
+
 export const updateLastTab = (lastTab) => ({
   type: consts.UPDATE_PAGE_ME,
   payload: {
