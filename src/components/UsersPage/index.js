@@ -1,15 +1,18 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
+import styles from './UsersPage.scss'
+
 import EntityList from 'components/EntityList'
 import UserItemContainer from 'containers/UserItemContainer'
 import UserMetaContainer from 'containers/UserMetaContainer'
 import Button from 'components/Button'
+import FilterQuestionList from 'containers/FilterQuestionList'
 
 class UsersPage extends React.Component {
   render() {
     return (
-      <div>
+      <div className={styles.fullscreen}>
         <Switch>
           <Route path={`/users/${this.props.myself.id}`}>
             <Redirect to="/me"/>
@@ -33,9 +36,11 @@ class UsersPage extends React.Component {
 const UserPage = ({ match }) => (
   <div>
     <UserMetaContainer id={match.params.id} only/>
-    <div>
+    <div className={styles['ask-container']}>
+      <textarea id={styles.question} placeholder="在此输入你的问题。如果回答被别人收听，你将得到收入的一半。若超过48小时未被回答，费用会退回你的微信钱包。"/>
       <Button size="lg">¥1 提个问题</Button>
     </div>
+    <FilterQuestionList filter="asked" type={1} userId={match.params.id}/>
   </div>
 )
 

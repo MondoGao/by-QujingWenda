@@ -1,0 +1,30 @@
+@import "~styles/utils";
+
+.fullscreen {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.ask-container {
+  margin: 1px 0 px2em(15px);
+  height: px2em(326px);
+  padding: px2em(22px) 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+#question {
+  margin-bottom: px2em(30px);
+  height: px2em(174px);
+  width: px2em(700px);
+  padding: px2em(16px) px2em(24px);
+  resize: none;
+  border: px2em(2px) solid #e4e4ec;
+  border-radius: px2em(7px);
+  @include font-dpr(24px);
+  color:#b5b6c9;
+  letter-spacing: px2em(.75px);
+  line-height: px2em(35px);
+  vertical-align: top;
+}
