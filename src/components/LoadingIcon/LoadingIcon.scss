@@ -14,6 +14,7 @@
   top: px2em(-100px);
   transition: top .8s;
   z-index: 3;
+  pointer-events: none;
   > span {
     display: inline-block;
     width: px2em(80px);

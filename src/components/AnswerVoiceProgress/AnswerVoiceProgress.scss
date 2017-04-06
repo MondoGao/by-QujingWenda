@@ -17,7 +17,7 @@
     border: px2em(24px) solid transparent;
     border-right-color: #e8646e;
     transform: translateX(5%) translateY(-50%) scaleY(.5);
-    transition: border .15s;
+    transition: border 1.2s;
   }
 }
 
@@ -81,5 +81,5 @@
   background-color: #e8939a;
   z-index: 0;
   opacity: 0;
-  transition: opacity 1s, right 1s;
+  transition: opacity .3s, right .5s;
 }
