@@ -13,13 +13,16 @@ class AnswerVoiceProgress extends React.Component {
   }
 
   /**
-   * 获取可显示的持续时间
+   * 获取可显示的剩余播放时间
    * @return {object}
    */
-  getReadableDuration = () => ({
-    minute: Math.floor(this.state.duration / 60) === 0 ? '' : Math.floor(this.state.duration / 60) + "'",
-    second: Math.floor(this.state.duration % 60) + "''"
-  })
+  getReadableRemainingDuration = () => {
+    const remainDuration = this.state.duration - (this.audio ? this.audio.currentTime : 0)
+    return ({
+      minute: Math.floor(remainDuration / 60) === 0 ? '' : Math.floor(remainDuration / 60) + "'",
+      second: Math.floor(remainDuration % 60) + "''"
+    })
+  }
 
   /**
    * 信息加载完毕获取 duration
@@ -96,7 +99,7 @@ class AnswerVoiceProgress extends React.Component {
     let title = '¥1 学习一个'
     let source = null
     if (this.props.question.isPaid) {
-      title = '重新收听'
+      title = '点击播放'
     }
     if (this.state.isPlaying) {
       state = 'playing'
@@ -120,7 +123,7 @@ class AnswerVoiceProgress extends React.Component {
             <figcaption>
               <icon/>
               <span>
-                {this.getReadableDuration().minute + this.getReadableDuration().second}
+                {this.getReadableRemainingDuration().minute + this.getReadableRemainingDuration().second}
               </span>
             </figcaption>
           </figure>
