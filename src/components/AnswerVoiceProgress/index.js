@@ -93,8 +93,8 @@ class AnswerVoiceProgress extends React.Component {
 
     return (
       <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']} ${styles[state]}`}>
-        <div className={styles['answer-voice']} style={{backgroundImage: `linear-gradient(to right, #e8939a ${this.state.playedPercentage - 20}%, rgba(0,0,0,0) ${this.state.playedPercentage}%)`}}>
-          {/*<div className={styles['answer-playing-progress']} style={{right: `${75 - this.state.playedPercentage * .75}%`}}/>*/}
+        <div className={styles['answer-voice']}>
+          <div className={styles['answer-playing-progress']} style={{right: `${90 - .9 * this.state.playedPercentage}%`}}/>
           <figure>
             <audio className={styles.audio} onLoadedMetadata={this.handleLoadedMetaData} onEnded={this.handleAudioEnded} onTimeUpdate={this.handleTimeUpdate} ref={el => this.audio = el}>
               <source src={this.props.question.audioUrl}/>

@@ -41,6 +41,7 @@
   background-color: #e8646e;
   border-radius: px2em(100px);
   overflow: hidden;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   h6 {
     position: relative;
     display: inline-block;
@@ -72,14 +73,13 @@
 }
 
 .answer-playing-progress {
+  width: 100%;
   height: px2em(77px);
   position: absolute;
-  border-radius: px2em(100px);
-  top: 0;
-  right: 75%;
-  left: 0;
+  right: 100%;
+  border-radius: 200px;
   background-color: #e8939a;
   z-index: 0;
   opacity: 0;
-  transition: all 1s;
+  transition: opacity 1s, right 1s;
 }
