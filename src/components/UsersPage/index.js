@@ -15,7 +15,7 @@ class UsersPage extends React.Component {
           </Route>
           <Route path="/users/:id" render={({ match }) => <UserMetaContainer id={match.params.id} only/>}/>
           <Route path="/users">
-            <EntityList entityIds={this.props.page.list} entity={UserItemContainer}/>
+            <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
           </Route>
         </Switch>
       </div>

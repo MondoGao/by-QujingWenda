@@ -15,11 +15,11 @@ const togglePagesLoading = (page, isLoading) => ({
 
 export const appendQuestions = () => (dispatch, getState) => {
   const state = getState()
-  const { prevPage, isLoadingComplete } = state.pages.hot
+  const { page, isLoadingComplete } = state.pages.hot
 
   if (!isLoadingComplete) {
     dispatch(togglePagesLoading(consts.PAGES.HOT, true))
-    sources.getQuestions(prevPage + 1)
+    sources.getQuestions(page + 1)
       .then(normalizedData => {
         dispatch(asyncActionsCreator(consts.APPEND_QUESTIONS, normalizedData))
 

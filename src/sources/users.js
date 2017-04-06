@@ -2,7 +2,7 @@ import { commonFetchGet } from 'sources/utils'
 import { user, users, questions } from 'sources/schemas'
 
 export function getUsers(page = 1) {
-  return commonFetchGet(`/api/v1/users?page=${page}`, users)
+  return commonFetchGet(`/api/v1/users?_page=${page}`, users)
 }
 
 export function getUser(id) {

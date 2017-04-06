@@ -7,7 +7,7 @@ import EntityList from 'components/EntityList'
 
 class HotPageContainer extends React.Component {
   handleScroll = (e) => {
-    if (!this.props.isLoading && e.target.scrollHeight - window.innerHeight - e.target.scrollTop < 100) {
+    if (!this.props.page.isLoadComplete && !this.props.page.isLoading && e.target.scrollHeight - window.innerHeight - e.target.scrollTop < 100) {
       this.props.appendData()
     }
   }
@@ -16,7 +16,8 @@ class HotPageContainer extends React.Component {
     return (
       <EntityList
         onListScroll={this.handleScroll}
-        entityIds={this.props.page.list}/>
+        entityIds={this.props.page.list}
+        fullscreen/>
     )
   }
 
