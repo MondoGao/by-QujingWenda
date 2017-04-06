@@ -16,7 +16,7 @@ class QuestionItem extends React.Component {
         <p className={styles.content}>{this.props.question.content}</p>
         <section className={styles['answer-container']}>
           {this.props.answerer ? <UserAvatar user={this.props.answerer}/> : null}
-          <AnswerVoiceProgress className={styles['answer-voice']}/>
+          <AnswerVoiceProgress className={styles['answer-voice']} question={this.props.question}/>
           <div className={styles['answer-meta']}>
             <p>价值{this.props.question.price}元</p>
             <p>{this.props.question.listenByNum}人听过</p>
@@ -35,6 +35,9 @@ class QuestionItem extends React.Component {
   componentDidMount() {
     if (!this.props.answerer) {
       this.props.getUser(this.props.question.answererId)
+    }
+    if (!this.props.asker) {
+      this.props.getUser(this.props.question.askerId)
     }
   }
 }

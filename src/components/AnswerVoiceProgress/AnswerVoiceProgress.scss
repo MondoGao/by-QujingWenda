@@ -5,6 +5,7 @@
   position: relative;
   margin-left: px2em(24px);
   vertical-align: middle;
+  white-space: nowrap;
   &:before {
     content: "";
     display: block;
@@ -16,6 +17,16 @@
     border: px2em(24px) solid transparent;
     border-right-color: #e8646e;
     transform: translateX(5%) translateY(-50%) scaleY(.5);
+    transition: border .15s;
+  }
+}
+
+.playing, .paused {
+  &:before {
+    border-right-color: #e8939a;
+  }
+  .answer-playing-progress {
+    opacity: 1;
   }
 }
 
@@ -31,9 +42,11 @@
   border-radius: px2em(100px);
   overflow: hidden;
   h6 {
+    position: relative;
     display: inline-block;
     font-size: inherit;
     font-weight: normal;
+    z-index: 1;
   }
   > figure {
     display: inline-block;
@@ -41,24 +54,32 @@
     @include font-dpr(24px);
     figcaption {
       display: inline-block;
-      opacity: .6;
-    }
-    icon {
-      content: '';
-      display: inline-block;
-      position: relative;
-      margin-right: px2em(2px);
-      width: px2em(14px);
-      height: px2em(20px);
-      background: url("assets/answer_voice.png") no-repeat center / contain;
+      span {
+        opacity: .6;
+      }
+      icon {
+        content: '';
+        display: inline-block;
+        position: relative;
+        top: px2em(2px);
+        margin-right: px2em(2px);
+        width: px2em(14px);
+        height: px2em(20px);
+        background: url("assets/answer_voice.png") no-repeat center / contain;
+      }
     }
   }
 }
 
 .answer-playing-progress {
-  @extend .answer-voice;
+  height: px2em(77px);
   position: absolute;
-  right: 100%;
+  border-radius: px2em(100px);
+  top: 0;
+  right: 75%;
+  left: 0;
   background-color: #e8939a;
   z-index: 0;
+  opacity: 0;
+  transition: all 1s;
 }
