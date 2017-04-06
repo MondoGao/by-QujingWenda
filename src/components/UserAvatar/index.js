@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './UserAvatar.scss'
 
-const UserAvatar = ({ user, size = 'sm', className }) => {
+const UserAvatar = ({ user, size = 'sm', className = '' }) => {
   let avatar = null
   switch (size) {
     case 'lg':

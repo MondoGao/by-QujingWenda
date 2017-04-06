@@ -110,7 +110,7 @@ class AnswerVoiceProgress extends React.Component {
     }
 
     return (
-      <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']} ${styles[state]}`}>
+      <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']}`}>
         <div className={styles['answer-voice']}>
           <div className={styles['answer-playing-progress']} style={{right: `${90 - .9 * this.state.playedPercentage}%`}}/>
           <figure>
@@ -137,6 +137,10 @@ class AnswerVoiceProgress extends React.Component {
 AnswerVoiceProgress.propTypes = {
   className: React.PropTypes.string,
   question: React.PropTypes.object.isRequired
+}
+
+AnswerVoiceProgress.defaultProps = {
+  className: ''
 }
 
 export default AnswerVoiceProgress
