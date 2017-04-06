@@ -5,8 +5,8 @@ import { updateLastTab } from 'actions'
 import MePage from 'components/MePage'
 
 const mapState = (state) => ({
-  myself: state.myself,
-  lastTab: state.pages.me.lastTab
+  myself: state.entities.users[state.myself.id],
+  page: state.pages.me
 })
 
 const mapDispatch = (dispatch) => ({

@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './EntityList.scss'
+import QuestionItemContainer from 'containers/QuestionItemContainer'
 
-const EntityList = ({ entityIds, onListScroll, entity }) => {
+const EntityList = ({ entityIds = [], onListScroll, entity =  QuestionItemContainer }) => {
   const Entity = entity
 
   return (

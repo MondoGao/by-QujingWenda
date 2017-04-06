@@ -5,6 +5,10 @@ import UserAvatar from 'components/UserAvatar'
 import SchoolContainer from 'containers/SchoolContainer'
 
 const UserMeta = ({ user, myself, only = false }) => {
+  if (!user) {
+    return null
+  }
+
   let descPairs = [
     user.id === myself.id ? <DescPair key="incom" title="收入" content={user.income}/> : <DescPair key="listenTo" title="听过" content={user.listenedNum}/>,
     <DescPair key="school" className={styles['auto-width']} type="ch" title="学校" content={

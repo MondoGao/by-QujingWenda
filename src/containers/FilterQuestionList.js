@@ -1,62 +1,36 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { appendUserQuestions } from 'actions'
 import EntityList from 'components/EntityList'
 
-const getFilterQuestions = (state, filter, userId) => {
-  const questions = state.entities.questions
-  const users = state.entities.users
-  const user = users[userId]
+class FilterQuestionList extends React.Component {
+  render() {
+    return <EntityList entityIds={this.props.questionIds}/>
+  }
 
-  switch (filter) {
-    case 'askByMe':
-      return Object.keys(questions).map(key => {
-        let question = questions[key]
-        if (question.askerId == userId) {
-          return {
-            ...question,
-            asker: user,
-            answerer: users[question.answererId]
-          }
-        }
-      })
-    case 'answerTo':
-      return Object.keys(questions).map(key => {
-        let question = questions[key]
-        if (question.answererId == userId) {
-          return {
-            ...question,
-            answerer: user,
-            asker: users[question.askerId]
-          }
-        }
-      })
-    case 'listenTo':
-      return Object.keys(questions).map(key => {
-        let question = questions[key]
-        if (question.isPaid) {
-          return {
-            ...question,
-            asker: users[question.askerId],
-            answerer: users[question.answererId]
-          }
-        }
-      })
+  componentDidMount() {
+    this.props.getData(this.props.userId, this.props.filter, this.props.type)
   }
 }
 
+FilterQuestionList.PropTypes = {
+  filter: React.PropTypes.oneOf(['asked', 'asking', 'paid']),
+  questionIds: React.PropTypes.array,
+  type: React.PropTypes.number,
+  userId: React.PropTypes.oneOfType(React.PropTypes.number, React.PropTypes.string)
+}
+
+
 const mapState = (state, ownProps) => ({
-  data: getFilterQuestions(state, ownProps.filter, ownProps.userId)
+  questionIds: state.entities.users[ownProps.userId][ownProps.filter]
 })
 
 const mapDispatch = (dispatch) => ({
-
+  getData(...args) {
+    dispatch(appendUserQuestions(...args))
+  }
 })
 
-const FilterEntityList = connect(mapState)(EntityList)
+const FilterQuestionListContainer = connect(mapState, mapDispatch)(FilterQuestionList)
 
-FilterEntityList.PropTypes = {
-  filter: React.PropTypes.oneOf(['askByMe', 'answerTo', 'listenTo']),
-  userId: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
-}
-
-export default FilterEntityList
+export default FilterQuestionListContainer

@@ -43,6 +43,16 @@ export const appendUsers = () => (dispatch, getState) => {
   }
 }
 
+export const appendUserQuestions = (id, filter, type) => (dispatch, getState) => {
+  const state = getState()
+  const prevPage = state.entities.users[id][filter] ? state.entities.users[id][filter].page : 0
+
+  sources.getUserQuestions(id, prevPage, type)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.APPEND_USER_QUESTIONS, {...normalizedData, type, filter, userId: id}))
+    })
+}
+
 export const refreshUser = id => (dispatch, getState) => {
   sources.getUser(id)
     .then(normalizedData => {

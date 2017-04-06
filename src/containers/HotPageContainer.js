@@ -17,7 +17,7 @@ class HotPageContainer extends React.Component {
     return (
       <EntityList
         onListScroll={this.handleScroll}
-        entityIds={this.props.page.list} entity={QuestionItemContainer}/>
+        entityIds={this.props.page.list}/>
     )
   }
 
