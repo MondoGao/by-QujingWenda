@@ -14,7 +14,7 @@ const UserItem = ({ user, myself }) => {
     <article className={styles.card}>
       <UserMetaContainer id={user.id}/>
       <Link to={`/users/${user.id}`}>
-        <Button className={styles['ask-button']}>¥{user.price} 提问</Button>
+        <Button className={styles['ask-button']}>提问</Button>
       </Link>
     </article>
   )

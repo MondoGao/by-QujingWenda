@@ -20,12 +20,10 @@ class UsersPage extends React.Component {
           </Route>
           <Route path="/users/:id" component={UserPage}/>
           <Route path="/users">
-            <div>
-              <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
-              <LoadingIcon isLoading={this.props.page.isLoading}/>
-            </div>
+            <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
           </Route>
         </Switch>
+        <LoadingIcon isLoading={this.props.page.isLoading}/>
       </div>
     )
   }

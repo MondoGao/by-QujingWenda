@@ -75,15 +75,19 @@ export const refreshUsers = () => dispatch => {
 
 export const refreshUserQuestions = (id, filter, type) => (dispatch, getState) => {
   const { myself } = getState()
-  const loadPage = myself.id == id ? consts.PAGES.ME : consts.PAGES.USERS
+  // const loadPage = myself.id == id ? consts.PAGES.ME : consts.PAGES.USERS
 
-  dispatch(togglePagesLoading(loadPage, true))
+  if (myself.id != id) {
+    dispatch(togglePagesLoading(consts.PAGES.USERS, true))
+  }
 
   sources.getUserQuestions(id, 1, type)
     .then(normalizedData => {
       dispatch(asyncActionsCreator(consts.REFRESH_USER_QUESTIONS, {...normalizedData, type, filter, userId: id}))
 
-      dispatch(togglePagesLoading(loadPage, false))
+      if (myself.id != id) {
+        dispatch(togglePagesLoading(consts.PAGES.USERS, false))
+      }
     })
 }
 
