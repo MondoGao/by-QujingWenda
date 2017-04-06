@@ -12,6 +12,14 @@
   text-align: center;
 }
 
+.lg {
+  border-width: px2em(2px);
+  width: px2em(240px);
+  height: px2em(61px);
+  line-height: px2em(61px);
+  font-weight: bold;
+}
+
 .disable {
   color: #84848c;
   border-color: #84848c;
