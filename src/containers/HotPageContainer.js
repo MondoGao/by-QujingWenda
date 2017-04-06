@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { appendQuestions } from 'actions'
 
 import EntityList from 'components/EntityList'
+import LoadingIcon from 'components/LoadingIcon'
 
 class HotPageContainer extends React.Component {
   handleScroll = (e) => {
@@ -14,10 +15,13 @@ class HotPageContainer extends React.Component {
 
   render() {
     return (
-      <EntityList
-        onListScroll={this.handleScroll}
-        entityIds={this.props.page.list}
-        fullscreen/>
+      <section>
+        <EntityList
+          onListScroll={this.handleScroll}
+          entityIds={this.props.page.list}
+          fullscreen/>
+        <LoadingIcon isLoading={this.props.page.isLoading}/>
+      </section>
     )
   }
 
