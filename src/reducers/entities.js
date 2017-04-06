@@ -17,7 +17,7 @@ function users(state = {}, action) {
     case consts.APPEND_USERS:
     case consts.REFRESH_USER:
       return {...state,  ...action.payload.entities.users}
-    case consts.APPEND_USER_QUESTIONS:
+    case consts.APPEND_USER_QUESTIONS: {
       const user = state[action.payload.userId]
       const filter = action.payload.filter
       const list = user[filter] ? user[filter] : []
@@ -38,6 +38,24 @@ function users(state = {}, action) {
           ...nextList
         }
       }
+    }
+    case consts.REFRESH_USER_QUESTIONS:{
+      const user = state[action.payload.userId]
+      const filter = action.payload.filter
+
+      let nextList = {
+        [filter]: action.payload.result
+      }
+      nextList[filter].page = 1
+
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          ...nextList
+        }
+      }
+    }
     default:
       return state
   }

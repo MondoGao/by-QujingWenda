@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { appendUserQuestions } from 'actions'
+import { appendUserQuestions, refreshUserQuestions } from 'actions'
 import EntityList from 'components/EntityList'
 
 class FilterQuestionList extends React.Component {
@@ -9,7 +9,7 @@ class FilterQuestionList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getData(this.props.userId, this.props.filter, this.props.type)
+    this.props.refreshData(this.props.userId, this.props.filter, this.props.type)
   }
 }
 
@@ -26,8 +26,12 @@ const mapState = (state, ownProps) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-  getData(...args) {
+  appendData(...args) {
     dispatch(appendUserQuestions(...args))
+  },
+
+  refreshData(...args) {
+    dispatch(refreshUserQuestions(...args))
   }
 })
 

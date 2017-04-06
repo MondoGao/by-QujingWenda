@@ -23,7 +23,7 @@ class UsersPage extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.page.isLoadComplete) {
+    if (this.props.page.page === 0) {
       this.props.appendData()
     }
   }

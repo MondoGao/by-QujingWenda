@@ -7,7 +7,7 @@ import UserList from 'components/UserList'
 
 class UserListContainer extends React.Component {
   componentWillMount() {
-    this.props.getData()
+    this.props.appendData()
   }
 
   render() {
@@ -26,7 +26,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getData() {
+  appendData() {
     dispatch(appendUsers())
   }
 })

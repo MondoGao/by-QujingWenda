@@ -53,6 +53,40 @@ export const appendUserQuestions = (id, filter, type) => (dispatch, getState) =>
     })
 }
 
+export const refreshQuestions = () => dispatch => {
+  dispatch(togglePagesLoading(consts.PAGES.HOT, true))
+  sources.getQuestions(1)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.REFRESH_QUESTIONS, normalizedData))
+
+      dispatch(togglePagesLoading(consts.PAGES.HOT, false))
+    })
+}
+
+export const refreshUsers = () => dispatch => {
+  dispatch(togglePagesLoading(consts.PAGES.HOT, true))
+  sources.getUsers(1)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.REFRESH_USERS, normalizedData))
+
+      dispatch(togglePagesLoading(consts.PAGES.HOT, false))
+    })
+}
+
+export const refreshUserQuestions = (id, filter, type) => (dispatch, getState) => {
+  const { myself } = getState()
+  const loadPage = myself.id == id ? consts.PAGES.ME : consts.PAGES.USERS
+
+  dispatch(togglePagesLoading(loadPage, true))
+
+  sources.getUserQuestions(id, 1, type)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.REFRESH_USER_QUESTIONS, {...normalizedData, type, filter, userId: id}))
+
+      dispatch(togglePagesLoading(loadPage, false))
+    })
+}
+
 export const refreshUser = id => (dispatch, getState) => {
   sources.getUser(id)
     .then(normalizedData => {

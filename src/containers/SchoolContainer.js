@@ -12,7 +12,7 @@ class SchoolContainer extends React.Component {
 
   componentDidMount() {
     if (!this.props.school) {
-      this.props.getData()
+      this.props.appendData()
     }
   }
 }
@@ -22,7 +22,7 @@ const mapState = (state, ownProps) => ({
 })
 
 const mapDispatch = (dispatch, ownProps) => ({
-  getData() {
+  appendData() {
     dispatch(refreshSchool(ownProps.id))
   }
 })

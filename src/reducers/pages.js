@@ -22,7 +22,14 @@ function hot(state = { isLoading: false, page: 0, list: [], isLoadComplete: fals
         list: [
           ...state.list,
           ...appendList
-        ]
+        ],
+        page: state.page + 1
+      }
+    case consts.REFRESH_QUESTIONS:
+      return {
+        ...state,
+        list: action.payload.result,
+        page: 1
       }
     default:
       return state
@@ -50,7 +57,14 @@ function users(state = { isLoading: false, page: 0, list: [], isLoadComplete: fa
         list: [
           ...state.list,
           ...appendList
-        ]
+        ],
+        page: state.page + 1
+      }
+    case consts.REFRESH_USERS:
+      return {
+        ...state,
+        list: action.payload.result,
+        page: 1
       }
     default:
       return state

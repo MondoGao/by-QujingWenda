@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { appendQuestions } from 'actions'
 
 import EntityList from 'components/EntityList'
-import QuestionItemContainer from 'containers/QuestionItemContainer'
 
 class HotPageContainer extends React.Component {
   handleScroll = (e) => {
@@ -22,7 +21,7 @@ class HotPageContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.page.isLoadComplete) {
+    if (this.props.page.page === 0) {
       this.props.appendData()
     }
   }
