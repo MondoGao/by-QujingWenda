@@ -6,7 +6,7 @@ class AnswerVoiceProgress extends React.Component {
     super(props)
 
     this.state = {
-      duration: 0,
+      duration: this.props.question.audioDuration,
       isPlaying: false,
       canPaused: false
     }
@@ -28,8 +28,11 @@ class AnswerVoiceProgress extends React.Component {
    */
   handleLoadedMetaData = e => {
     this.setState({
-      duration: e.target.duration
+      duration: e.target.duration,
+      isPlaying: true,
+      canPaused: true
     })
+    this.audio.play()
   }
 
   /**
@@ -58,26 +61,30 @@ class AnswerVoiceProgress extends React.Component {
   }
 
   /**
-   * 切换播放状态
+   * 切换播放状态以及跳转付款
    * @param {Event} e
    * @return void
    */
   handleClick = e => {
     if (this.props.question.isPaid) {
-      if (this.audio.paused) {
-        this.audio.play()
-        this.setState({
-          isPlaying: true,
-          canPaused: true
-        })
-      } else {
-        if (this.audio.ended) {
-          this.audio.currentTime = 0
+      if (this.audio.src) {
+        if (this.audio.paused) {
+          this.audio.play()
+          this.setState({
+            isPlaying: true,
+            canPaused: true
+          })
+        } else {
+          if (this.audio.ended) {
+            this.audio.currentTime = 0
+          }
+          this.audio.pause()
+          this.setState({
+            isPlaying: false
+          })
         }
-        this.audio.pause()
-        this.setState({
-          isPlaying: false
-        })
+      } else {
+        this.audio.src = this.props.question.audioUrl
       }
     } else {
       alert("跳转付款")
@@ -106,7 +113,6 @@ class AnswerVoiceProgress extends React.Component {
           <figure>
             <audio
               className={styles.audio}
-              src={this.props.question.isPaid ? this.props.question.audioUrl : '#'}
               onLoadedMetadata={this.handleLoadedMetaData}
               onEnded={this.handleAudioEnded}
               onTimeUpdate={this.handleTimeUpdate}
