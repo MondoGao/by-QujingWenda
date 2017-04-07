@@ -97,7 +97,6 @@ class AnswerVoiceProgress extends React.Component {
   render() {
     let state = 'normal'
     let title = '¥1 学习一个'
-    let source = null
     if (this.props.question.isPaid) {
       title = '点击播放'
     }
@@ -110,7 +109,7 @@ class AnswerVoiceProgress extends React.Component {
     }
 
     return (
-      <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']}`}>
+      <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']} ${styles[state]}`}>
         <div className={styles['answer-voice']}>
           <div className={styles['answer-playing-progress']} style={{right: `${90 - .9 * this.state.playedPercentage}%`}}/>
           <figure>
