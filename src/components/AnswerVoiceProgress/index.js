@@ -8,7 +8,8 @@ class AnswerVoiceProgress extends React.Component {
     this.state = {
       duration: this.props.question.audioDuration,
       isPlaying: false,
-      canPaused: false
+      canPaused: false,
+      playedPercentage: 0
     }
   }
 
@@ -47,6 +48,7 @@ class AnswerVoiceProgress extends React.Component {
     this.audio.currentTime = 0
     this.setState({
       isPlaying: false,
+      isLoading: false,
       canPaused: false,
       playedPercentage: 0
     })
@@ -88,6 +90,10 @@ class AnswerVoiceProgress extends React.Component {
         }
       } else {
         this.audio.src = this.props.question.audioUrl
+        this.setState({
+          playedPercentage: 0,
+          isLoading: true
+        })
       }
     } else {
       alert("跳转付款")
@@ -97,6 +103,9 @@ class AnswerVoiceProgress extends React.Component {
   render() {
     let state = 'normal'
     let title = '¥1 学习一个'
+    let progressBarStyle = {
+      right: `${90 - .9 * this.state.playedPercentage}%`
+    }
     if (this.props.question.isPaid) {
       title = '点击播放'
     }
@@ -106,12 +115,16 @@ class AnswerVoiceProgress extends React.Component {
     } else if (this.state.canPaused) {
       state = 'paused'
       title = '已经暂停'
+    } else {
+      progressBarStyle = {
+        right: '100%'
+      }
     }
 
     return (
       <article onClick={this.handleClick} className={`${this.props.className} ${styles['answer-voice-wrapper']} ${styles[state]}`}>
         <div className={styles['answer-voice']}>
-          <div className={styles['answer-playing-progress']} style={{right: `${90 - .9 * this.state.playedPercentage}%`}}/>
+          <div className={styles['answer-playing-progress']} style={progressBarStyle}/>
           <figure>
             <audio
               className={styles.audio}
