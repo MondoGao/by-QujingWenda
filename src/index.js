@@ -6,18 +6,42 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import { AppContainer } from 'react-hot-loader';
+import * as storage from 'redux-storage'
+import createEngine from 'redux-storage-engine-localstorage';
+import storageFilter from 'redux-storage-decorator-filter'
+import storageDebounce from 'redux-storage-decorator-debounce'
 
 import reducers from 'reducers/index'
 
 import App from 'components/App';
 
+const storageEngine = storageFilter(
+  storageDebounce(
+    createEngine('qujing'),
+    1500
+  ),
+  [
+  
+  ],
+  [
+    'myself'
+  ]
+)
+
+const storageMiddleware = storage.createMiddleware(storageEngine)
+
 let store = createStore(
-  reducers,
+  storage.reducer(reducers),
   applyMiddleware(
     thunk,
+    storageMiddleware,
     logger
   )
 )
+
+const storageLoad = storage.createLoader(storageEngine)
+storageLoad(store)
+  .then(newState => console.log('加载本地状态'))
 
 const render = (Component) => {
   ReactDOM.render(
