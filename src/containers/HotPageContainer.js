@@ -20,7 +20,7 @@ class HotPageContainer extends React.Component {
           onListScroll={this.handleScroll}
           entityIds={this.props.page.list}
           fullscreen/>
-        <LoadingIcon isLoading={this.props.page.isLoading}/>
+        <LoadingIcon isLoading={this.props.page.loadingNum > 0}/>
       </div>
     )
   }

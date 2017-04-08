@@ -41,8 +41,9 @@ const userQuestions = (state = {}, action) => {
     case consts.APPEND_QUESTIONS:
     case consts.APPEND_USERS:
     case consts.REFRESH_USER:
+      const users = action.payload.entities.users ? action.payload.entities.users : {}
       const hadUsers = Object.keys(state)
-      const newUsers = Object.keys(action.payload.entities.users).filter(userId => !hadUsers.includes(userId))
+      const newUsers = Object.keys(users).filter(userId => !hadUsers.includes(userId))
       let nextState = {
         ...state
       }

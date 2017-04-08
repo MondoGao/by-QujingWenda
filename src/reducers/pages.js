@@ -1,12 +1,22 @@
 import { combineReducers } from 'redux'
 import * as consts from 'actions/consts'
 
-const hot = (state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) => {
+const loadingNum = (state = 0, action) => {
+  let loadingNum = state
+  if (action.payload.isLoading) {
+    loadingNum++
+  } else {
+    loadingNum--
+  }
+  return loadingNum
+}
+
+const hot = (state = { loadingNum: 0, page: 0, list: [], isLoadComplete: false }, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_HOT_LOADING:
       return {
         ...state,
-        isLoading: action.payload.isLoading
+        loadingNum: loadingNum(state.loadingNum, action)
       }
     case consts.APPEND_QUESTIONS:
       const appendList = action.payload.result.filter(id => !state.list.includes(id))
@@ -36,12 +46,12 @@ const hot = (state = { isLoading: false, page: 0, list: [], isLoadComplete: fals
   }
 }
 
-const users = (state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) => {
+const users = (state = { loadingNum: 0, page: 0, list: [], isLoadComplete: false }, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_USERS_LOADING:
       return {
         ...state,
-        isLoading: action.payload.isLoading
+        loadingNum: loadingNum(state.loadingNum, action)
       }
     case consts.APPEND_USERS:
       const appendList = action.payload.result.filter(id => !state.list.includes(id))
@@ -71,12 +81,12 @@ const users = (state = { isLoading: false, page: 0, list: [], isLoadComplete: fa
   }
 }
 
-const me = (state = {isLoading: false, lastTab: 'asked'}, action) => {
+const me = (state = { loadingNum: 0, lastTab: 'asked' }, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_ME_LOADING:
       return {
         ...state,
-        isLoading: action.payload.isLoading
+        loadingNum: loadingNum(state.loadingNum, action)
       }
     case consts.UPDATE_PAGE_ME:
       return {

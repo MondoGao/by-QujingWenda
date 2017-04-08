@@ -23,7 +23,7 @@ class UsersPage extends React.Component {
             <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
           </Route>
         </Switch>
-        <LoadingIcon isLoading={this.props.page.isLoading}/>
+        <LoadingIcon isLoading={this.props.page.loadingNum > 0}/>
       </div>
     )
   }

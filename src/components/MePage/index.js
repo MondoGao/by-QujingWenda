@@ -40,7 +40,7 @@ const MePage = ({ myself, page, updateLastTab }) => {
         {tabRoutes}
         <Route path="/me" render={() => <ForceRedirect to={`/me/${page.lastTab}`}/>}/>
       </Switch>
-      <LoadingIcon isLoading={page.isLoading}/>
+      <LoadingIcon isLoading={page.loadingNum > 0}/>
     </div>
   )
 }
