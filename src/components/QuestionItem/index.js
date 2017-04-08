@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './QuestionItem.scss'
 
 import UserAvatar from 'components/UserAvatar'
-import AnswerVoiceProgress from 'components/AnswerVoiceProgress'
+import VoiceContainer from 'containers/VoiceContainer'
 import AnswerQuestion from 'components/AnswerQuestion'
 
 class QuestionItem extends React.Component {
@@ -42,7 +42,7 @@ class QuestionItem extends React.Component {
         <p className={styles.content}>{this.props.question.content}</p>
         <section className={styles['answer-container']}>
           {this.props.answerer ? <UserAvatar user={this.props.answerer}/> : null}
-          <AnswerVoiceProgress className={styles['answer-voice']} question={this.props.question}/>
+          <VoiceContainer className={styles['answer-voice']} question={this.props.question}/>
           <div className={styles['answer-meta']}>
             <p>价值{this.props.question.price}元</p>
             <p>{this.props.question.listenByNum}人听过</p>

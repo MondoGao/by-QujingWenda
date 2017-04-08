@@ -34,7 +34,6 @@ class AnswerVoiceProgress extends React.Component {
   handleLoadedMetaData = e => {
     this.setState({
       duration: e.target.duration,
-      isPaused: false
     })
     this.audio.play()
   }
@@ -70,7 +69,7 @@ class AnswerVoiceProgress extends React.Component {
   }
   
   /**
-   * 单击处理逻辑，
+   * 单击处理逻辑，转换逻辑在 play 和 pause 的处理程序中得以简化
    * @param {Event} e
    * @return void
    */
@@ -87,32 +86,34 @@ class AnswerVoiceProgress extends React.Component {
             isPaused: true
           })
         } else {
-          this.setState({
-            isPlaying: true
-          })
           this.audio.play()
         }
         break
       case 'playing':
-        this.setState({
-          isPlaying: false,
-          isPaused: true
-        })
         this.audio.pause()
         break
       case 'paused':
-        this.setState({
-          isPlaying: true,
-          isPaused: false
-        })
         this.audio.play()
         break
       case 'loading':
-        this.setState({
-          isPlaying: false
-        })
+        this.audio.pause()
         break
     }
+  }
+  
+  handlePlay = e => {
+    this.setState({
+      isPlaying: true,
+      isPaused: false
+    })
+    this.props.updatePlayingAudioId()
+  }
+  
+  handlePause = e => {
+    this.setState({
+      isPlaying: false,
+      isPaused: true
+    })
   }
   
   /**
@@ -146,9 +147,6 @@ class AnswerVoiceProgress extends React.Component {
    */
   render() {
     const uiState = this.getViewState()
-    if (uiState == 'loading') {
-      console.log('loading')
-    }
     
     const tipData = {
       unpaid: {
@@ -192,6 +190,8 @@ class AnswerVoiceProgress extends React.Component {
               onLoadedMetadata={this.handleLoadedMetaData}
               onEnded={this.handleAudioEnded}
               onTimeUpdate={this.handleTimeUpdate}
+              onPlay={this.handlePlay}
+              onPause={this.handlePause}
               ref={el => this.audio = el}/>
             <figcaption>
               <icon/>
@@ -205,11 +205,19 @@ class AnswerVoiceProgress extends React.Component {
       </article>
     )
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.playingAudioId !== this.props.question.id) {
+      this.audio.pause()
+    }
+  }
 }
 
 AnswerVoiceProgress.propTypes = {
   className: React.PropTypes.string,
-  question: React.PropTypes.object.isRequired
+  question: React.PropTypes.object.isRequired,
+  playingAudioId: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  updatePlayingAudioId: React.PropTypes.func
 }
 
 AnswerVoiceProgress.defaultProps = {

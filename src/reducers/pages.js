@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import * as consts from 'actions/consts'
 
-function hot(state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) {
+const hot = (state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_HOT_LOADING:
       return {
@@ -36,7 +36,7 @@ function hot(state = { isLoading: false, page: 0, list: [], isLoadComplete: fals
   }
 }
 
-function users(state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) {
+const users = (state = { isLoading: false, page: 0, list: [], isLoadComplete: false }, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_USERS_LOADING:
       return {
@@ -71,7 +71,7 @@ function users(state = { isLoading: false, page: 0, list: [], isLoadComplete: fa
   }
 }
 
-function me(state = {isLoading: false, lastTab: 'asked'}, action) {
+const me = (state = {isLoading: false, lastTab: 'asked'}, action) => {
   switch (action.type) {
     case consts.UPDATE_PAGE_ME_LOADING:
       return {
@@ -88,10 +88,18 @@ function me(state = {isLoading: false, lastTab: 'asked'}, action) {
   }
 }
 
+const playingAudioId = (state = -1, action) => {
+  if (action.type === consts.UPDATE_PLAYING_AUDIO) {
+    return action.payload.id
+  }
+  return state
+}
+
 const pages = combineReducers({
   hot,
   users,
-  me
+  me,
+  playingAudioId
 })
 
 export default pages

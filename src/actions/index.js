@@ -105,7 +105,14 @@ export const refreshSchool = id => dispatch => {
     })
 }
 
-export const updateLastTab = (lastTab) => ({
+export const updatePlayingAudio = id => ({
+  type: consts.UPDATE_PLAYING_AUDIO,
+  payload: {
+    id
+  }
+})
+
+export const updateLastTab = lastTab => ({
   type: consts.UPDATE_PAGE_ME,
   payload: {
     lastTab
