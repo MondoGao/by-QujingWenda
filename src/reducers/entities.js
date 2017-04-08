@@ -32,7 +32,7 @@ function users(state = {}, action) {
 const filterInitialState = () => ({
   isLoadComplete: false,
   list: [],
-  page: 1
+  page: 0
 })
 
 const userQuestions = (state = {}, action) => {
@@ -58,8 +58,9 @@ const userQuestions = (state = {}, action) => {
     case consts.REFRESH_USER_QUESTIONS: {
       const userQuestion = state[action.payload.userId]
       const filter = action.payload.filter
+      const appendList = action.payload.result.filter(questionId => !userQuestion[filter].list.includes(questionId))
       const page = state[action.payload.userId][filter].page
-      const isLoadComplete = action.payload.result.length > 0
+      const isLoadComplete = appendList.length < 1
       
       return {
         ...state,
@@ -68,7 +69,7 @@ const userQuestions = (state = {}, action) => {
           [filter]: {
             list: [
               ...userQuestion[filter].list,
-              ...action.payload.result.filter(questionId => !userQuestion[filter].list.includes(questionId))
+              ...appendList
             ],
             isLoadComplete,
             page: isLoadComplete ? page : page + 1

@@ -54,13 +54,9 @@ const users = (state = { loadingNum: 0, page: 0, list: [], isLoadComplete: false
         loadingNum: loadingNum(state.loadingNum, action)
       }
     case consts.APPEND_USERS:
+    case consts.REFRESH_USERS:
       const appendList = action.payload.result.filter(id => !state.list.includes(id))
-      if (appendList.length === 0) {
-        return {
-          ...state,
-          isLoadComplete: true
-        }
-      }
+      const isLoadComplete = appendList.length < 1
 
       return {
         ...state,
@@ -68,13 +64,7 @@ const users = (state = { loadingNum: 0, page: 0, list: [], isLoadComplete: false
           ...state.list,
           ...appendList
         ],
-        page: state.page + 1
-      }
-    case consts.REFRESH_USERS:
-      return {
-        ...state,
-        list: action.payload.result,
-        page: 1
+        page: isLoadComplete ? state.page : state.page + 1
       }
     default:
       return state
