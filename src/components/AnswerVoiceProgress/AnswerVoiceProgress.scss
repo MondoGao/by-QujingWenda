@@ -32,7 +32,7 @@
 
 
 .loading-icon-wrapper {
-  margin-left: px2em(40px);
+  margin-left: px2em(60px);
   opacity: 0;
   transition: opacity .3s;
 }
@@ -44,7 +44,7 @@
 
 .answer-voice {
   position: relative;
-  width: px2em(303px);
+  width: px2em(340px);
   height: px2em(77px);
   line-height: px2em(77px);
   color: #fff;
@@ -57,6 +57,8 @@
   h6 {
     position: relative;
     display: inline-block;
+    width: px2em(133px);
+    text-align: center;
     font-size: inherit;
     font-weight: normal;
     z-index: 1;
@@ -67,6 +69,7 @@
     @include font-dpr(24px);
     figcaption {
       display: inline-block;
+      width: px2em(85px);
       span {
         opacity: .6;
       }
