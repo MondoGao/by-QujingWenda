@@ -22,8 +22,6 @@ const MePage = ({ myself, page, updateLastTab }) => {
   }]
   const tabLinks = tabs.map(tab => <li key={tab.name}><NavLink to={`/me/${tab.name}`} replace onClick={() => updateLastTab(tab.name)} activeClassName={styles.active}>{tab.text}</NavLink></li>
   )
-  const tabRoutes = tabs.map(tab => <Route path={`/me/${tab.name}`} render={() => <FilterQuestionList filter={tab.name} userId={myself.id} key={tab.name} type={tab.type}/>}/>
-  )
 
   return (
     <div className={styles['me-container']}>
@@ -37,7 +35,9 @@ const MePage = ({ myself, page, updateLastTab }) => {
         </ul>
       </section>
       <Switch>
-        {tabRoutes}
+        <Route path={`/me/${tabs[0].name}`} render={() => <FilterQuestionList filter={tabs[0].name} userId={myself.id} type={tabs[0].type}/>}/>
+        <Route path={`/me/${tabs[1].name}`} render={() => <FilterQuestionList filter={tabs[1].name} userId={myself.id} type={tabs[1].type}/>}/>
+        <Route path={`/me/${tabs[2].name}`} render={() => <FilterQuestionList filter={tabs[2].name} userId={myself.id} type={tabs[2].type}/>}/>
         <Route path="/me" render={() => <ForceRedirect to={`/me/${page.lastTab}`}/>}/>
       </Switch>
       <LoadingIcon isLoading={page.loadingNum > 0}/>

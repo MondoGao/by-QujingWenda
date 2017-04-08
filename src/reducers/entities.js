@@ -29,48 +29,53 @@ function users(state = {}, action) {
   }
 }
 
-const questionList = (state = [], action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
+const filterInitialState = () => ({
+  isLoadComplete: false,
+  list: [],
+  page: 1
+})
 
 const userQuestions = (state = {}, action) => {
   switch (action.type) {
     case consts.APPEND_QUESTIONS:
     case consts.APPEND_USERS:
-    case consts.REFRESH_USER:
+    case consts.REFRESH_USER: {
       const users = action.payload.entities.users ? action.payload.entities.users : {}
       const hadUsers = Object.keys(state)
       const newUsers = Object.keys(users).filter(userId => !hadUsers.includes(userId))
       let nextState = {
         ...state
       }
-      newUsers.map(userId => nextState[userId] = {})
-      
+      newUsers.map(userId => nextState[userId] = {
+        asked: filterInitialState(),
+        asking: filterInitialState(),
+        paid: filterInitialState()
+      })
+  
       return nextState
+    }
     case consts.APPEND_USER_QUESTIONS:
+    case consts.REFRESH_USER_QUESTIONS: {
       const userQuestion = state[action.payload.userId]
       const filter = action.payload.filter
+      const page = state[action.payload.userId][filter].page
+      const isLoadComplete = action.payload.result.length > 0
+      
       return {
         ...state,
         [action.payload.userId]: {
           ...userQuestion,
-          [filter]: [
-            ...userQuestion[filter],
-            ...action.payload.result
-          ]
+          [filter]: {
+            list: [
+              ...userQuestion[filter].list,
+              ...action.payload.result.filter(questionId => !userQuestion[filter].list.includes(questionId))
+            ],
+            isLoadComplete,
+            page: isLoadComplete ? page : page + 1
+          }
         }
       }
-    case consts.REFRESH_USER_QUESTIONS:
-      return {
-        ...state,
-        [action.payload.userId]: {
-          ...state[action.payload.userId],
-          [action.payload.filter]: action.payload.result
-        }
-      }
+    }
     default:
       return state
   }

@@ -74,19 +74,25 @@ export const refreshUsers = () => dispatch => {
 }
 
 export const refreshUserQuestions = (id, filter, type) => (dispatch, getState) => {
-  const { myself } = getState()
-  // const loadPage = myself.id == id ? consts.PAGES.ME : consts.PAGES.USERS
-
-  if (myself.id != id) {
-    dispatch(togglePagesLoading(consts.PAGES.USERS, true))
+  const state = getState()
+  const { myself } = state
+  const loadPage = myself.id === id ? consts.PAGES.ME : consts.PAGES.USERS
+  let notLoadingFlag = false
+  
+  if (state.entities.userQuestions[id][filter].list.length > 0) {
+    notLoadingFlag = true
+  }
+  
+  if (!notLoadingFlag) {
+    dispatch(togglePagesLoading(loadPage, true))
   }
 
   sources.getUserQuestions(id, 1, type)
     .then(normalizedData => {
       dispatch(asyncActionsCreator(consts.REFRESH_USER_QUESTIONS, {...normalizedData, type, filter, userId: id}))
-
-      if (myself.id != id) {
-        dispatch(togglePagesLoading(consts.PAGES.USERS, false))
+  
+      if (!notLoadingFlag) {
+        dispatch(togglePagesLoading(loadPage, false))
       }
     })
 }
@@ -98,10 +104,20 @@ export const refreshUser = id => (dispatch, getState) => {
     })
 }
 
-export const refreshSchool = id => dispatch => {
+export const refreshSchool = id => (dispatch, getState) => {
+  const { myself } = getState()
+  
+  if (myself.id === id) {
+    dispatch(togglePagesLoading(consts.PAGES.ME, true))
+  }
+  
   sources.getSchool(id)
     .then(normalizedData => {
       dispatch(asyncActionsCreator(consts.REFRESH_SCHOOL, normalizedData))
+      
+      if (myself.id === id) {
+        dispatch(togglePagesLoading(consts.PAGES.ME, false))
+      }
     })
 }
 

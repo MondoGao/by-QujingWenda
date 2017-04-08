@@ -11,6 +11,12 @@ class FilterQuestionList extends React.Component {
   componentDidMount() {
     this.props.refreshData(this.props.userId, this.props.filter, this.props.type)
   }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.filter !== this.props.filter) {
+      this.props.refreshData(this.props.userId, this.props.filter, this.props.type)
+    }
+  }
 }
 
 FilterQuestionList.PropTypes = {
@@ -22,7 +28,7 @@ FilterQuestionList.PropTypes = {
 
 
 const mapState = (state, ownProps) => ({
-  questionIds: state.entities.userQuestions[ownProps.userId][ownProps.filter]
+  questionIds: state.entities.userQuestions[ownProps.userId][ownProps.filter].list
 })
 
 const mapDispatch = (dispatch) => ({
