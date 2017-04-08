@@ -24,7 +24,8 @@ const storageEngine = storageFilter(
   
   ],
   [
-    'myself'
+    'myself',
+    'pages'
   ]
 )
 
