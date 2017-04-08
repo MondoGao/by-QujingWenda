@@ -22,7 +22,7 @@ FilterQuestionList.PropTypes = {
 
 
 const mapState = (state, ownProps) => ({
-  questionIds: state.entities.users[ownProps.userId][ownProps.filter]
+  questionIds: state.entities.userQuestions[ownProps.userId][ownProps.filter]
 })
 
 const mapDispatch = (dispatch) => ({

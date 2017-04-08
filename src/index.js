@@ -44,9 +44,4 @@ if (module.hot) {
       </Router>
     )
   })
-
-  module.hot.accept('reducers', () => {
-    const nextReducer = require('reducers');
-    store.replaceReducer(nextReducer);
-  })
 }
