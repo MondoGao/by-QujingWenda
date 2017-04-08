@@ -30,6 +30,18 @@
   }
 }
 
+
+.loading-icon-wrapper {
+  margin-left: px2em(40px);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.loading {
+  .loading-icon-wrapper {
+    opacity: .5;
+  }
+}
+
 .answer-voice {
   position: relative;
   width: px2em(303px);

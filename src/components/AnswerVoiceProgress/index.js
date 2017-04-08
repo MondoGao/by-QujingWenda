@@ -203,7 +203,9 @@ class AnswerVoiceProgress extends React.Component {
             </figcaption>
           </figure>
           <h6>{finalData.title}</h6>
-          <LoadingIcon color="white"/>
+          <span className={styles['loading-icon-wrapper']}>
+            <LoadingIcon />
+          </span>
         </div>
       </article>
     )
