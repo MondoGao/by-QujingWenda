@@ -1,0 +1,36 @@
+@import "~styles/utils";
+
+.loader-wrapper.loading {
+  top: px2em(150px);
+  > span {
+    transform: rotate(0deg);
+  }
+}
+
+.loader-wrapper {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: px2em(-100px);
+  transition: top .8s;
+  z-index: 3;
+  pointer-events: none;
+  > span {
+    display: inline-block;
+    width: px2em(80px);
+    height: px2em(80px);
+    padding: px2em(10px);
+    border-radius: 50%;
+    box-shadow: 0 px2em(3px) px2em(14px) px2em(-5px) rgba(0, 0, 0, 1);
+    background-color: #fff;
+    transform: rotate(360deg);
+    transition: transform .8s;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      vertical-align: middle;
+    }
+  }
+}

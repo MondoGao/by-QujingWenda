@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './AnswerVoiceProgress.scss'
 
+import LoadingIcon from 'components/LoadingIcon'
+
 class AnswerVoiceProgress extends React.Component {
   constructor(props) {
     super(props)
@@ -201,6 +203,7 @@ class AnswerVoiceProgress extends React.Component {
             </figcaption>
           </figure>
           <h6>{finalData.title}</h6>
+          <LoadingIcon color="white"/>
         </div>
       </article>
     )

@@ -4,7 +4,7 @@ import styles from './MePage.scss'
 import Button from 'components/Button'
 import UserMetaContainer from 'containers/UserMetaContainer'
 import FilterQuestionList from 'containers/FilterQuestionList'
-import LoadingIcon from 'components/LoadingIcon'
+import PageLoading from 'components/PageLoading'
 
 const MePage = ({ myself, page, updateLastTab }) => {
   const tabs = [{
@@ -40,7 +40,7 @@ const MePage = ({ myself, page, updateLastTab }) => {
         <Route path={`/me/${tabs[2].name}`} render={() => <FilterQuestionList filter={tabs[2].name} userId={myself.id} type={tabs[2].type}/>}/>
         <Route path="/me" render={() => <ForceRedirect to={`/me/${page.lastTab}`}/>}/>
       </Switch>
-      <LoadingIcon isLoading={page.loadingNum > 0}/>
+      <PageLoading isLoading={page.loadingNum > 0}/>
     </div>
   )
 }

@@ -8,7 +8,7 @@ import UserItemContainer from 'containers/UserItemContainer'
 import UserMetaContainer from 'containers/UserMetaContainer'
 import Button from 'components/Button'
 import FilterQuestionList from 'containers/FilterQuestionList'
-import LoadingIcon from 'components/LoadingIcon'
+import PageLoading from 'components/PageLoading'
 
 class UsersPage extends React.Component {
   render() {
@@ -23,7 +23,7 @@ class UsersPage extends React.Component {
             <EntityList entityIds={this.props.page.list} entity={UserItemContainer} fullscreen/>
           </Route>
         </Switch>
-        <LoadingIcon isLoading={this.props.page.loadingNum > 0}/>
+        <PageLoading isLoading={this.props.page.loadingNum > 0}/>
       </div>
     )
   }

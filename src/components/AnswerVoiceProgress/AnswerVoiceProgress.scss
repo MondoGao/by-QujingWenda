@@ -21,7 +21,7 @@
   }
 }
 
-.playing, .paused {
+.playing, .paused, .loading {
   &:before {
     border-right-color: #e8939a;
   }
