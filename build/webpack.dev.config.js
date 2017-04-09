@@ -30,6 +30,9 @@ module.exports = WebpackMerge(baseConfig, {
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NamedModulesPlugin(),
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('develop')
+    })
   ],
   devServer: {
     hot: true,
@@ -37,6 +40,7 @@ module.exports = WebpackMerge(baseConfig, {
     publicPath: '/',
     port: 8080,
     host: '0.0.0.0',
+    compress: true,
     proxy: {
       "/api/v1": {
         target: "http://localhost:8081",

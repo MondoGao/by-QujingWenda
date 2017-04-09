@@ -8,9 +8,15 @@ module.exports = {
     index: './src/index.js',
     vendor: [
       'react',
+      'react-dom',
+      'react-redux',
+      'react-router-dom',
       'redux',
-      'react-router',
-      'react-redux'
+      'redux-storage',
+      'redux-storage-decorator-debounce',
+      'redux-storage-decorator-filter',
+      'redux-storage-engine-localstorage',
+      'redux-thunk'
     ]
   },
   output: {

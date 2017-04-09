@@ -31,13 +31,18 @@ const storageEngine = storageFilter(
 
 const storageMiddleware = storage.createMiddleware(storageEngine)
 
+let middlewares = [
+  thunk,
+  storageMiddleware
+]
+
+if (process.env.NODE_ENV === 'develop') {
+  middlewares.push(logger)
+}
+
 let store = createStore(
   storage.reducer(reducers),
-  applyMiddleware(
-    thunk,
-    storageMiddleware,
-    logger
-  )
+  applyMiddleware(...middlewares)
 )
 
 const storageLoad = storage.createLoader(storageEngine)

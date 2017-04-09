@@ -1,4 +1,4 @@
-const {resolve} = require('path')
+const { resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -32,6 +32,20 @@ module.exports = WebpackMerge(baseConfig, {
   plugins: [
     new ExtractTextPlugin({
       filename: 'styles/[name].[hash].css'
+    }),
+    new Webpack.optimize.UglifyJsPlugin({
+      sourceMap: 'cheap-module-source-map',
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+      },
+      compress: {
+        screw_ie8: true
+      },
+      comments: false
+    }),
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ]
 })
