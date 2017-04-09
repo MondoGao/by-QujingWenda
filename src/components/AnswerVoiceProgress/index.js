@@ -18,7 +18,7 @@ class AnswerVoiceProgress extends React.Component {
   
   /**
    * 获取可显示的剩余播放时间
-   * @return {object}
+   * @return {{minute, second}}
    */
   getReadableRemainingDuration = () => {
     const remainDuration = this.state.duration - (this.audio ? this.audio.currentTime : 0)
@@ -103,6 +103,11 @@ class AnswerVoiceProgress extends React.Component {
     }
   }
   
+  /**
+   * 开始播放时将 UI 状态切换至播放，缺陷是加载时无法播放，也无法暂停，待处理
+   * @param {Event} e
+   * @return void
+   */
   handlePlay = e => {
     this.setState({
       isPlaying: true,
@@ -111,6 +116,11 @@ class AnswerVoiceProgress extends React.Component {
     this.props.updatePlayingAudioId()
   }
   
+  /**
+   * 暂停时将 UI 状态切换至暂停
+   * @param {Event} e
+   * @return void
+   */
   handlePause = e => {
     this.setState({
       isPlaying: false,

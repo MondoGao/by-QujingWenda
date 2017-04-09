@@ -30,6 +30,16 @@
   }
 }
 
+.answer-voice-wrapper.unpaid {
+  h6 {
+    width: auto;
+    text-indent: px2em(-14px);
+  }
+  .loading-icon-wrapper {
+    display: none;
+  }
+}
+
 
 .loading-icon-wrapper {
   margin-left: px2em(60px);

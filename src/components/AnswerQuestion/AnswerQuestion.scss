@@ -2,8 +2,62 @@
 
 .answer-container {
   text-align: center;
+  margin-top: px2em(22px);
+  margin-bottom: px2em(-10px);
+  height: px2em(80px);
 }
 
-.button {
-  margin-top: px2em(22px);
+.tip {
+  display: inline-block;
+  margin: 0 px2em(48px);
+  width: 4em;
+  vertical-align: middle;
+  @include font-dpr(26px);
+  color: #e8646e;
+  &:first-of-type {
+    letter-spacing: px2em(6px);
+    text-align: right;
+    color: #898991;
+  }
+}
+
+.recording, .recorded {
+  display: inline-block;
+  width: px2em(80px);
+  height: px2em(80px);
+  border: px2em(6px) solid #eaeaea;
+  border-radius:100%;
+  vertical-align: middle;
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  time {
+    @include font-dpr(24px);
+    color: #898991;
+    letter-spacing: px2em(-0.05px);
+  }
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+  }
+}
+
+.recording span {
+  height: px2em(30px);
+  width: px2em(30px);
+  background: #e8646e;
+  border-radius: px2em(5px);
+}
+
+.recorded span {
+  position: relative;
+  left: px2em(16px);
+  border: px2em(28px) solid transparent;
+  border-left-color: #7be599;
+  transform: scaleY(.66);
+  border-radius: px2em(5px);
 }
