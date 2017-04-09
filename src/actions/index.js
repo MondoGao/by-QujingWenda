@@ -30,11 +30,11 @@ export const appendQuestions = () => (dispatch, getState) => {
 
 export const appendUsers = () => (dispatch, getState) => {
   const state = getState()
-  const { prevPage, isLoadingComplete } = state.pages.users
+  const { page, isLoadingComplete } = state.pages.users
 
   if (!isLoadingComplete) {
     dispatch(togglePagesLoading(consts.PAGES.USERS, true))
-    sources.getUsers(prevPage + 1)
+    sources.getUsers(page + 1)
       .then(normalizedData => {
         dispatch(asyncActionsCreator(consts.APPEND_USERS, normalizedData))
 
