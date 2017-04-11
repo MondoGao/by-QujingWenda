@@ -20,8 +20,7 @@ const MePage = ({ myself, page, updateLastTab }) => {
     text: '我听的',
     type: 3
   }]
-  const tabLinks = tabs.map(tab => <li key={tab.name}><NavLink to={`/me/${tab.name}`} replace onClick={() => updateLastTab(tab.name)} activeClassName={styles.active}>{tab.text}</NavLink></li>
-  )
+  const tabLinks = tabs.map(tab => <NavLink to={`/me/${tab.name}`} replace onClick={() => updateLastTab(tab.name)} activeClassName={styles.active} key={tab.name}>{tab.text}</NavLink>)
 
   return (
     <div className={styles['me-container']}>
@@ -30,9 +29,10 @@ const MePage = ({ myself, page, updateLastTab }) => {
         <Button className={styles['btn-upgrade']} disable><Link to="#">成为答主</Link></Button>
       </section>
       <section>
-        <ul className={styles.nav}>
+        <div className={styles.nav}>
           {tabLinks}
-        </ul>
+          <span className={styles['slider']}/>
+        </div>
       </section>
       <Switch>
         <Route path={`/me/${tabs[0].name}`} render={() => <FilterQuestionList filter={tabs[0].name} userId={myself.id} type={tabs[0].type}/>}/>
