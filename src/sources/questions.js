@@ -1,4 +1,4 @@
-import { commonFetchGet } from 'sources/utils'
+import { commonFetchGet, checkStatus } from 'sources/utils'
 import { questions, question } from 'sources/schemas'
 
 /**
@@ -20,13 +20,50 @@ export const getQuestion = id => (
 )
 
 /**
+ * 创建新问题并直接拉回新问题信息，忽视付款步骤
+ * @param {!string} content
+ * @param {!(string|number)} answererId
+ * @return {Promise}
+ */
+export const postQuestions = (content, answererId) => (
+  fetch(`/api/v1/questions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify({
+      content,
+      answererId
+    })
+  })
+    .then(checkStatus)
+    .then(data => data.json())
+    .then(data => getQuestion(data.questionId))
+)
+
+/**
  * 变更一个问题的付款或回答状态
  * @param {!(string | number)} id 问题 id
  * @param {!number} type 变更请求的类别，1：付款；2：回答
  * @param {(string | number)=} mediaId 在 type = 2 时才需要
  * @return {Promise} type 1 返回订单详情，type 2 返回成功标记
  */
-export const patchQuestion = (id, type, mediaId) => (
-  Promise.resolve()
+export const patchQuestion = (id, type, mediaId = undefined) => (
+  fetch(`/api/v1/questions/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify({
+      id,
+      type,
+      mediaId
+    })
+      .then(checkStatus)
+      .then(data => data.json())
+      .then(data => getQuestion(id))
+  })
 )
 
