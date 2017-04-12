@@ -1,7 +1,11 @@
-import * as cconsts from 'actions/consts'
+import * as consts from 'actions/consts'
 
-export default function myself(state = {id: 2}, action) {
+export default function myself(state = {}, action) {
   switch (action.type) {
+    case consts.LOGIN_IN:
+      return {
+        id: action.payload.id
+      }
     default:
       return state
   }

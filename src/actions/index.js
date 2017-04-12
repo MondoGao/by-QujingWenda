@@ -121,6 +121,18 @@ export const refreshSchool = id => (dispatch, getState) => {
     })
 }
 
+/**
+ * 登陆并获取用户信息
+ * @param {string} code 微信登陆 code
+ * @return {Promise}
+ */
+export const login = code => (dispatch, getState) => {
+  sources.login(code)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.LOGIN_IN, normalizedData))
+    })
+}
+
 export const updatePlayingAudio = id => ({
   type: consts.UPDATE_PLAYING_AUDIO,
   payload: {
@@ -134,3 +146,4 @@ export const updateLastTab = lastTab => ({
     lastTab
   }
 })
+

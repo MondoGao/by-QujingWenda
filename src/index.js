@@ -13,7 +13,7 @@ import storageDebounce from 'redux-storage-decorator-debounce'
 
 import reducers from 'reducers/index'
 
-import App from 'components/App';
+import App from 'containers/App';
 
 const storageEngine = storageFilter(
   storageDebounce(
@@ -47,7 +47,11 @@ let store = createStore(
 
 const storageLoad = storage.createLoader(storageEngine)
 storageLoad(store)
-  .then(newState => console.log('加载本地状态'))
+  .then(newState => {
+    if (process.env.NODE_ENV === 'develop') {
+      console.log('加载本地实体状态完毕')
+    }
+  })
 
 const render = (Component) => {
   ReactDOM.render(

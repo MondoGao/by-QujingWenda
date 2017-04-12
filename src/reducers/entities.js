@@ -20,6 +20,7 @@ function users(state = {}, action) {
     case consts.REFRESH_USER:
     case consts.APPEND_USER_QUESTIONS:
     case consts.REFRESH_USER_QUESTIONS:
+    case consts.LOGIN_IN:
       return {
         ...state,
         ...action.payload.entities.users
