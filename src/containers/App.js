@@ -9,6 +9,7 @@ import './App.scss'
 
 import { getParameterByName } from 'sources/utils'
 import { login } from 'actions'
+import { settings } from 'sources/index'
 
 import Nav from 'components/Nav'
 import HotPageContainer from 'containers/HotPageContainer'
@@ -49,7 +50,7 @@ class App extends React.Component {
     if (!this.props.myself.id) {
       let code = getParameterByName('code')
       if (!code) {
-        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2a225b806c5f67d3&redirect_uri=${encodeURIComponent(window.location.href)}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(settings.redirectUri)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
       } else {
         this.props.loginIn(code)
       }

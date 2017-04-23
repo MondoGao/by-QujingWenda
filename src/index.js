@@ -71,7 +71,7 @@ render(
 );
 
 if (module.hot) {
-  module.hot.accept('components/App', () => {
+  module.hot.accept('containers/App', () => {
     render(
       <Router>
         <Route path="/" component={App}/>

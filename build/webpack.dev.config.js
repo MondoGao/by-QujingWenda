@@ -42,12 +42,9 @@ module.exports = WebpackMerge(baseConfig, {
     host: '0.0.0.0',
     compress: true,
     proxy: {
-      "/api/v1": {
-        target: "http://localhost:8081",
-        pathRewrite: {"^/api/v1" : ""}
-      },
-      '/assets': {
-        target: 'http://localhost:8081'
+      "/api": {
+        target: "http://test.qujingwenda.hustonline.net",
+        changeOrigin: true
       }
     }
   }
