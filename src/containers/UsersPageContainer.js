@@ -12,7 +12,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   appendData() {
-    dispatch(appendUsers())
+    return dispatch(appendUsers())
+      .catch(promiseCatch)
   }
 })
 

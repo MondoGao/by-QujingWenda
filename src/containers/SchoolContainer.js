@@ -23,7 +23,8 @@ const mapState = (state, ownProps) => ({
 
 const mapDispatch = (dispatch, ownProps) => ({
   appendData() {
-    dispatch(refreshSchool(ownProps.id))
+    return dispatch(refreshSchool(ownProps.id))
+      .catch(promiseCatch)
   }
 })
 

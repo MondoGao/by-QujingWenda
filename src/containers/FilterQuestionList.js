@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { appendUserQuestions, refreshUserQuestions } from 'actions'
+import { promiseCatch } from 'scripts/utils'
+
 import EntityList from 'components/EntityList'
 
 class FilterQuestionList extends React.Component {
@@ -33,11 +35,13 @@ const mapState = (state, ownProps) => ({
 
 const mapDispatch = (dispatch) => ({
   appendData(...args) {
-    dispatch(appendUserQuestions(...args))
+    return dispatch(appendUserQuestions(...args))
+      .catch(promiseCatch)
   },
 
   refreshData(...args) {
-    dispatch(refreshUserQuestions(...args))
+    return dispatch(refreshUserQuestions(...args))
+      .catch(promiseCatch)
   }
 })
 

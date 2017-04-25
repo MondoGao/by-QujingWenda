@@ -27,7 +27,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   appendData() {
-    dispatch(appendUsers())
+    return dispatch(appendUsers())
+      .catch(promiseCatch)
   }
 })
 

@@ -64,7 +64,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loginIn(code) {
-    dispatch(login(code))
+    return dispatch(login(code))
+      .catch(promiseCatch)
   }
 })
 

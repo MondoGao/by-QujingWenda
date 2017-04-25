@@ -14,7 +14,8 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = (dispatch) => ({
   getUser(id) {
-    dispatch(refreshUser(id))
+    return dispatch(refreshUser(id))
+      .catch(promiseCatch)
   }
 })
 

@@ -1,3 +1,7 @@
+/**
+ * @const
+ * @type {string}
+ */
 export const APPEND_QUESTIONS = 'APPEND_QUESTIONS'
 export const APPEND_USERS = 'APPEND_USERS'
 export const APPEND_USER_QUESTIONS = 'APPEND_USER_QUESTIONS'
@@ -14,6 +18,9 @@ export const UPDATE_PAGE_ME_LOADING = 'UPDATE_PAGE_ME_LOADING'
 export const UPDATE_PLAYING_AUDIO = 'UPDATE_PLAYING_AUDIO'
 export const LOGIN_IN = 'LOGIN_IN'
 
+/**
+ * @enum {string}
+ */
 export const PAGES = {
   HOT: 'HOT',
   USERS: 'USERS',

@@ -1,13 +1,27 @@
 import * as consts from 'actions/consts'
 import * as sources from 'sources'
 
+/**
+ * @typedef {{type: string, payload}} action
+ * @typedef {function(): Promise} thunk
+ * @typedef {function(): action} creator
+ */
+
+
+/**
+ * 创建异步 action
+ * @type {creator}
+ * @param type
+ * @param payload
+ */
 const asyncActionsCreator = (type, payload) => ({
   type,
   payload
 })
 
 /**
- * {creator} 切换页面加载状态
+ * 切换页面加载状态
+ * @type {creator}
  * @param {string} page 页面常量
  * @param {boolean} isLoading
  */
@@ -18,9 +32,10 @@ const togglePagesLoading = (page, isLoading) => ({
   }
 })
 
+
 /**
- * {thunk} 增加问题
- * @return {Promise}
+ * 增加问题
+ * @type {thunk}
  */
 export const appendQuestions = () => (dispatch, getState) => {
   const state = getState()
@@ -38,8 +53,8 @@ export const appendQuestions = () => (dispatch, getState) => {
 }
 
 /**
- * {thunk} 向后添加用户
- * {Promise}
+ * 向后添加用户
+ * @type {thunk}
  */
 export const appendUsers = () => (dispatch, getState) => {
   const state = getState()
@@ -57,11 +72,11 @@ export const appendUsers = () => (dispatch, getState) => {
 }
 
 /**
- * {thunk} 添加用户所属的问题
+ * 添加用户所属的问题
+ * @type {thunk}
  * @param {string|number} id 用户 id
  * @param {asked|asking|paid} filter
  * @param {1|2|3=} type 1 问我的|2 我问的|3 我听过
- * @return {Promise}
  */
 export const appendUserQuestions = (id, filter, type = 1) => (dispatch, getState) => {
   const state = getState()
@@ -74,8 +89,8 @@ export const appendUserQuestions = (id, filter, type = 1) => (dispatch, getState
 }
 
 /**
- * {thunk} 刷新首页问题列表
- * @return {Promise}
+ * 刷新首页问题列表
+ * @type {thunk}
  */
 export const refreshQuestions = () => dispatch => {
   dispatch(togglePagesLoading(consts.PAGES.HOT, true))
@@ -88,8 +103,8 @@ export const refreshQuestions = () => dispatch => {
 }
 
 /**
- * {thunk} 刷新用户页面列表
- * @return {Promise}
+ * 刷新用户页面列表
+ * @type {thunk}
  */
 export const refreshUsers = () => dispatch => {
   dispatch(togglePagesLoading(consts.PAGES.HOT, true))
@@ -102,11 +117,11 @@ export const refreshUsers = () => dispatch => {
 }
 
 /**
- * {thunk} 刷新用户所属的问题列表
+ * 刷新用户所属的问题列表
+ * @type {thunk}
  * @param {string|number} id 用户 id
  * @param {asked|asking|paid} filter
  * @param {1|2|3=} type 1 问我的|2 我问的|3 我听过
- * @return {Promise}
  */
 export const refreshUserQuestions = (id, filter, type) => (dispatch, getState) => {
   const state = getState()
@@ -133,9 +148,9 @@ export const refreshUserQuestions = (id, filter, type) => (dispatch, getState) =
 }
 
 /**
- * {thunk} 刷新单个用户信息
+ * 刷新单个用户信息
+ * @type {thunk}
  * @param id
- * @return {Promise}
  */
 export const refreshUser = id => (dispatch, getState) => {
   return sources.getUser(id)
@@ -145,9 +160,9 @@ export const refreshUser = id => (dispatch, getState) => {
 }
 
 /**
- * {thunk} 刷新学校信息
+ * 刷新学校信息
+ * @type {thunk}
  * @param id
- * @return {Promise}
  */
 export const refreshSchool = id => (dispatch, getState) => {
   const { myself } = getState()
@@ -167,9 +182,9 @@ export const refreshSchool = id => (dispatch, getState) => {
 }
 
 /**
- * {thunk} 登陆并获取用户信息
+ * 登陆并获取用户信息
+ * @type {thunk}
  * @param {string} code 微信登陆 code
- * @return {Promise}
  */
 export const login = code => (dispatch, getState) => {
   return sources.login(code)
@@ -179,9 +194,9 @@ export const login = code => (dispatch, getState) => {
 }
 
 /**
- * {creator} 更新正在播放的音频
+ * 更新正在播放的音频
+ * @type {creator}
  * @param id
- * @return {action}
  */
 export const updatePlayingAudio = id => ({
   type: consts.UPDATE_PLAYING_AUDIO,
@@ -191,9 +206,9 @@ export const updatePlayingAudio = id => ({
 })
 
 /**
- * {creator} 更新我的页面上个访问 tab
+ * 更新我的页面上个访问 tab
+ * @type {creator}
  * @param {asked|asking|paid} lastTab
- * @return {action}
  */
 export const updateLastTab = lastTab => ({
   type: consts.UPDATE_PAGE_ME,
