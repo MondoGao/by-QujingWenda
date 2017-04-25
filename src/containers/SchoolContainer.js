@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { refreshSchool } from 'actions'
+import { promiseCatch } from 'scripts/utils'
 
 class SchoolContainer extends React.Component {
   render() {

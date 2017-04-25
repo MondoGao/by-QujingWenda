@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { refreshUser } from 'actions'
+import { promiseCatch } from 'scripts/utils'
+
 import UserItem from 'components/UserItem'
 
 const mapState = (state, ownProps) => {

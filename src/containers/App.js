@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 
 import './App.scss'
+import { promiseCatch } from 'scripts/utils'
 
 import { getParameterByName } from 'sources/utils'
 import { login } from 'actions'

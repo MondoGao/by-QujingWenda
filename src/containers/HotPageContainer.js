@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { appendQuestions } from 'actions'
+import { promiseCatch } from 'scripts/utils'
 
 import EntityList from 'components/EntityList'
 import PageLoading from 'components/PageLoading'
