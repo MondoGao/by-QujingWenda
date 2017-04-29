@@ -7,7 +7,7 @@ import { questions, question } from 'sources/schemas'
  * @return {Promise}
  */
 export const getQuestions = (page = 1) => (
-  commonFetchGet(`/api/v1/questions?_page=${page}`, questions)
+  commonFetchGet(`/api/v1/questions?page=${page}`, questions)
 )
 
 /**

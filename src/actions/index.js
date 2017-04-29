@@ -190,8 +190,8 @@ export const login = code => (dispatch, getState) => {
   return sources.login(code)
     .then(normalizedData => {
       dispatch(asyncActionsCreator(consts.LOGIN_IN, normalizedData))
-      
-      return refreshUser(normalizedData.id)
+  
+      return dispatch(refreshUser(normalizedData.id))
     })
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { appendUsers } from 'actions'
+import { promiseCatch } from 'scripts/utils'
 
 import UsersPage from 'components/UsersPage'
 

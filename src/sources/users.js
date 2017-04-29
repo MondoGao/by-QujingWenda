@@ -7,7 +7,7 @@ import { user, users, questions } from 'sources/schemas'
  * @return {Promise}
  */
 export const getUsers = (page = 1) => {
-  return commonFetchGet(`/api/v1/users?_page=${page}`, users)
+  return commonFetchGet(`/api/v1/users?page=${page}`, users)
 }
 
 /**
