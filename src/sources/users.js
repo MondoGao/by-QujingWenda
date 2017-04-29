@@ -17,7 +17,7 @@ export const getUsers = (page = 1) => {
  */
 export const getUser = (id) => {
   if (!id) {
-    throw new Error('无效的用户id')
+    throw new Error('无效的用户id' + id)
   }
 
   return commonFetchGet(`/api/v1/users/${id}`, user)
@@ -56,5 +56,4 @@ export const login = code => (
   })
     .then(checkStatus)
     .then(data => data.json())
-    .then(data => getUser(data.id))
 )

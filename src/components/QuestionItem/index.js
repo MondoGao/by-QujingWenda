@@ -12,6 +12,10 @@ class QuestionItem extends React.Component {
     }
 
     if (!this.props.question.isAnswered) {
+      if (!this.props.asker || !this.props.answerer) {
+        return null
+      }
+      
       let userDiv = null
       const isAsker = this.props.myself.id === this.props.asker.id
       const anotherUser = isAsker ? this.props.answerer : this.props.asker
