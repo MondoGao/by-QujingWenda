@@ -46,6 +46,7 @@ module.exports = WebpackMerge(baseConfig, {
         target: "http://test.qujingwenda.hustonline.net",
         changeOrigin: true
       }
-    }
+    },
+    historyApiFallback: true
   }
 })

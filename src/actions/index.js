@@ -159,6 +159,13 @@ export const refreshUser = id => (dispatch, getState) => {
     })
 }
 
+export const refreshQuestion = id => (dispatch, getState) => {
+  return sources.getQuestion(id)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.REFRESH_QUESTION, normalizedData))
+    })
+}
+
 /**
  * 刷新学校信息
  * @type {thunk}

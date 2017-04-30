@@ -22,7 +22,7 @@ export const getQuestion = id => (
 /**
  * 创建新问题并直接拉回新问题信息，忽视付款步骤
  * @param {!string} content
- * @param {!(string|number)} answererId
+ * @param {!string} answererId
  * @return {Promise}
  */
 export const postQuestions = (content, answererId) => (
@@ -39,7 +39,6 @@ export const postQuestions = (content, answererId) => (
   })
     .then(checkStatus)
     .then(data => data.json())
-    .then(data => getQuestion(data.questionId))
 )
 
 /**
