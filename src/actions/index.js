@@ -166,6 +166,15 @@ export const refreshQuestion = id => (dispatch, getState) => {
     })
 }
 
+export const payQuestion = id => dispatch => {
+  return sources.patchQuestion(id, 1)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.PAY_QUESTION, normalizedData))
+      
+      return dispatch(refreshQuestion(normalizedData.id))
+    })
+}
+
 /**
  * 刷新学校信息
  * @type {thunk}

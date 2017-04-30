@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { updatePlayingAudio } from 'actions'
+import { updatePlayingAudio, payQuestion } from 'actions'
 
 import AnswerVoiceProgress from 'components/AnswerVoiceProgress'
 
 const mapState = state => ({
-  playingAudioId: state.pages.playingAudioId
+  playingAudioId: state.pages.playingAudioId,
+  myself: state.myself
 })
 
 const mapDispatch = (dispatch, ownProps) => ({
   updatePlayingAudioId() {
-    dispatch(updatePlayingAudio(ownProps.question.id))
+    return dispatch(updatePlayingAudio(ownProps.question.id))
+  },
+  payQuestion(questionId) {
+    return dispatch(payQuestion(questionId))
   }
 })
 

@@ -60,9 +60,8 @@ export const patchQuestion = (id, type, mediaId = undefined) => (
       type,
       mediaId
     })
-      .then(checkStatus)
-      .then(data => data.json())
-      .then(data => getQuestion(id))
   })
+    .then(checkStatus)
+    .then(data => data.json())
 )
 

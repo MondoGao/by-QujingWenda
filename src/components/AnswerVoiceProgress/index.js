@@ -78,7 +78,7 @@ class AnswerVoiceProgress extends React.Component {
   handleClick = e => {
     switch (this.getViewState()) {
       case 'unpaid':
-        alert("跳转付款")
+        this.props.payQuestion(this.props.question.id)
         break
       case 'normal':
         if (this.state.isInitial) {
@@ -139,7 +139,7 @@ class AnswerVoiceProgress extends React.Component {
    */
   getViewState() {
     let state = 'unpaid'
-    if (this.props.question.isPaid) {
+    if (this.props.question.isPaid || this.props.question.askerId === this.props.myself.id || this.props.question.answererId === this.props.myself.id) {
       state = 'normal'
       if (this.state.isPlaying) {
         if (this.state.isPaused) {

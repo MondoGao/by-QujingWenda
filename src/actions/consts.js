@@ -17,6 +17,7 @@ export const UPDATE_PAGE_ME = 'UPDATE_PAGE_ME'
 export const UPDATE_PAGE_ME_LOADING = 'UPDATE_PAGE_ME_LOADING'
 export const UPDATE_PLAYING_AUDIO = 'UPDATE_PLAYING_AUDIO'
 export const LOGIN_IN = 'LOGIN_IN'
+export const PAY_QUESTION = 'PAY_QUESTION'
 
 /**
  * @enum {string}
